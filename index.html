@@ -1,26 +1,867 @@
 <!DOCTYPE html>
-<html>
-<head><title>RehearsAI Privacy Policy</title></head>
-<body style="font-family: Arial; max-width: 700px; margin: 40px auto; padding: 20px;">
-<h1>Privacy Policy — RehearsAI</h1>
-<p>Last updated: March 2026</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehearsAI — AI-Powered Theater Rehearsal App</title>
+    <meta name="description" content="Upload any script and AI extracts all dialogues. Share with your theater group, record voices, rehearse with TTS. Available on Android & Windows.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep: #0D0B1A;
+            --surface: #151226;
+            --card: #1C1835;
+            --accent: #A855F7;
+            --accent-soft: #C084FC;
+            --accent-glow: rgba(168, 85, 247, 0.25);
+            --blue: #3B82F6;
+            --gold: #F59E0B;
+            --text: #E8E4F0;
+            --text-muted: #9B94AD;
+            --green: #22C55E;
+        }
 
-<h2>1. Data We Collect</h2>
-<p>Voice recordings (stored locally and optionally uploaded to Firebase), display names, device identifiers, and script text sent to Google Gemini AI for analysis.</p>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<h2>2. How We Use Data</h2>
-<p>Script text is sent to Google Gemini API for dialogue extraction (retained 55 days, not used for AI training). Shared project data and voice recordings are stored on Google Firebase when you choose to share a project.</p>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--deep);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-<h2>3. Data Storage</h2>
-<p>Local data stays on your device until you delete it. Firebase data is stored on Google servers (US). Gemini API retains prompts for 55 days for abuse monitoring.</p>
+        /* ══════ GRAIN OVERLAY ══════ */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 9999;
+        }
 
-<h2>4. Your Rights</h2>
-<p>You can delete all your data anytime from Settings → Delete All My Data. This removes local data and your data from our servers.</p>
+        /* ══════ NAVIGATION ══════ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 16px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(13, 11, 26, 0.8);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+        }
 
-<h2>5. Third-Party Services</h2>
-<p>Google Gemini AI (script analysis), Google Firebase (data sharing), Google Play (payments).</p>
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<h2>6. Contact</h2>
-<p>Rami Bhan<br>support@rehearsaiapp.com</p>
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-soft); }
+
+        .nav-cta {
+            background: var(--accent);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        /* ══════ HERO ══════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 24px 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 20% 50%, rgba(168, 85, 247, 0.08), transparent),
+                radial-gradient(ellipse 40% 60% at 80% 30%, rgba(59, 130, 246, 0.06), transparent),
+                radial-gradient(ellipse 50% 40% at 50% 80%, rgba(168, 85, 247, 0.04), transparent);
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--accent-soft);
+            margin-bottom: 28px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 19px;
+            color: var(--text-muted);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.2s, border-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        /* ══════ SECTIONS ══════ */
+        section {
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 56px;
+        }
+
+        /* ══════ FEATURES ══════ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 36px 28px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(168, 85, 247, 0.2);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ══════ HOW IT WORKS ══════ */
+        .steps {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 240px;
+            max-width: 320px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            color: white;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ══════ PRICING ══════ */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            position: relative;
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .price-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin: 16px 0;
+        }
+
+        .price-amount span {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .price-list {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+
+        .price-list li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-list li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .price-list li.disabled {
+            opacity: 0.4;
+        }
+
+        .price-list li.disabled::before {
+            content: '✗';
+            color: #666;
+        }
+
+        /* ══════ DOWNLOAD ══════ */
+        #download {
+            text-align: center;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .download-btn {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 20px 32px;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.2s, border-color 0.3s;
+            min-width: 240px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .download-btn-icon { font-size: 32px; }
+
+        .download-btn-text {
+            text-align: left;
+        }
+
+        .download-btn-text small {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .download-btn-text strong {
+            font-size: 16px;
+        }
+
+        /* ══════ VIDEO ══════ */
+        #video { text-align: center; }
+
+        .video-placeholder {
+            max-width: 720px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder p {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ══════ TESTIMONIALS ══════ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial {
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .testimonial-stars { color: var(--gold); margin-bottom: 12px; }
+
+        .testimonial p {
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ══════ FOOTER ══════ */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 24px 40px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand .logo { font-size: 20px; }
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        .footer-links h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--accent-soft); }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ══════ ANIMATIONS ══════ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ══════ RESPONSIVE ══════ */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 36px; }
+            .hero-desc { font-size: 16px; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; }
+            .steps { flex-direction: column; align-items: center; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ══════ HAMBURGER ══════ */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="logo">Rehears<span>AI</span></a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it Works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#download" class="nav-cta">Get Started</a></li>
+        </ul>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div class="hero-badge">🎭 AI-Powered Theater Rehearsal</div>
+        <h1>Your script.<br>Every voice.<br><em>One app.</em></h1>
+        <p class="hero-desc">Upload any theater script and let AI extract all characters and dialogues instantly. Share with your group, record voices, and rehearse together — anywhere, anytime.</p>
+        <div class="hero-buttons">
+            <a href="#download" class="btn-primary">▶ Get RehearsAI Free</a>
+            <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
+    </div>
+</header>
+
+<!-- FEATURES -->
+<section id="features">
+    <div class="section-label reveal">Features</div>
+    <h2 class="section-title reveal">Everything your theater group needs</h2>
+    <p class="section-desc reveal">From script to stage — RehearsAI handles the tedious work so you can focus on the performance.</p>
+
+    <div class="features-grid">
+        <div class="feature-card reveal">
+            <span class="feature-icon">🤖</span>
+            <h3>AI Script Extraction</h3>
+            <p>Upload a PDF, Word, or text file. Enter character names and AI extracts all dialogues automatically — in any language. Works in seconds, not hours.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">👥</span>
+            <h3>Team Collaboration</h3>
+            <p>Share your project with a simple room code. Each actor selects their role. The director manages scenes, edits, and controls who can join.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">🎤</span>
+            <h3>Voice Recording</h3>
+            <p>Record your lines and share them with the team via cloud. Download other actors' recordings to rehearse with real voices — compressed for minimal data usage.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">🗣️</span>
+            <h3>Text-to-Speech</h3>
+            <p>Assign unique AI voices with adjustable pitch to each character. Rehearse the full scene solo with different voices — perfect for learning your cues.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">🎬</span>
+            <h3>Scene Management</h3>
+            <p>Organize your script by scenes. Jump to any scene during rehearsal. See previous and next lines for context while practicing.</p>
+        </div>
+        <div class="feature-card reveal">
+            <span class="feature-icon">🌍</span>
+            <h3>Multiple Languages</h3>
+            <p>Full interface in English, German, French, Spanish, Italian, Turkish, and Arabic. Works with scripts in any language.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+    <div class="section-label reveal">How it works</div>
+    <h2 class="section-title reveal">From script to rehearsal in 3 steps</h2>
+    <p class="section-desc reveal">No manual copying. No retyping. Just upload and go.</p>
+
+    <div class="steps">
+        <div class="step reveal">
+            <div class="step-number">1</div>
+            <h3>Upload Your Script</h3>
+            <p>Upload any script file — PDF, Word, or plain text. Enter the character names and let AI do the rest.</p>
+        </div>
+        <div class="step reveal">
+            <div class="step-number">2</div>
+            <h3>Share With Your Group</h3>
+            <p>Get a room code and share it with your actors. Everyone joins, picks their role, and sees their lines.</p>
+        </div>
+        <div class="step reveal">
+            <div class="step-number">3</div>
+            <h3>Rehearse Together</h3>
+            <p>Practice with AI voices or real recordings. See your cues, track your progress, and export when ready.</p>
+        </div>
+    </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+    <div class="section-label reveal">See it in action</div>
+    <h2 class="section-title reveal" style="text-align:center;">Watch RehearsAI in action</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 40px;">See how easy it is to go from script to rehearsal.</p>
+
+    <div class="video-placeholder reveal">
+        <!-- Replace this div with: <iframe width="720" height="405" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
+        🎬
+        <p>Tutorial video coming soon</p>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+    <div class="section-label reveal" style="text-align:center;">Pricing</div>
+    <h2 class="section-title reveal" style="text-align:center;">Simple, transparent pricing</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 56px;">Start free. Upgrade when your group needs collaboration.</p>
+
+    <div class="pricing-grid">
+        <div class="price-card reveal">
+            <h3>Free</h3>
+            <div class="price-amount">€0 <span>forever</span></div>
+            <ul class="price-list">
+                <li>2 AI script extractions</li>
+                <li>Local rehearsal with TTS</li>
+                <li>Voice recording</li>
+                <li>Scene management</li>
+                <li>Script export</li>
+                <li class="disabled">Share projects</li>
+                <li class="disabled">Cloud recordings</li>
+                <li class="disabled">Unlimited AI extractions</li>
+            </ul>
+            <a href="#download" class="btn-secondary" style="width:100%; justify-content:center;">Get Started Free</a>
+        </div>
+
+        <div class="price-card featured reveal">
+            <div class="price-badge">Most Popular</div>
+            <h3>Premium</h3>
+            <div class="price-amount">€3.99 <span>/month</span></div>
+            <ul class="price-list">
+                <li>Unlimited AI extractions</li>
+                <li>Share projects with team</li>
+                <li>Cloud voice recordings</li>
+                <li>Local rehearsal with TTS</li>
+                <li>Scene management</li>
+                <li>Script export</li>
+                <li>No API key needed</li>
+                <li>7-day free trial</li>
+            </ul>
+            <a href="#download" class="btn-primary" style="width:100%; justify-content:center;">Start Free Trial</a>
+            <p style="text-align:center; margin-top:12px; font-size:12px; color:var(--text-muted);">Also available: €29.99/year (save 37%)</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="section-label reveal" style="text-align:center;">What actors say</div>
+    <h2 class="section-title reveal" style="text-align:center;">Loved by theater groups</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 56px;">Join theater groups who transformed their rehearsal process.</p>
+
+    <div class="testimonials-grid">
+        <div class="testimonial reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>"The AI extracted our entire 3-act play in under a minute. What used to take us hours of copying and distributing scripts now takes seconds."</p>
+            <div class="testimonial-author">Coming soon</div>
+            <div class="testimonial-role">Be the first to share your experience!</div>
+        </div>
+        <div class="testimonial reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>"I can rehearse my lines on the bus with AI voices playing the other characters. It's like having a scene partner in my pocket."</p>
+            <div class="testimonial-author">Coming soon</div>
+            <div class="testimonial-role">Be the first to share your experience!</div>
+        </div>
+        <div class="testimonial reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>"Sharing recordings with the group changed everything. We could hear each other's lines before meeting in person. Rehearsals became so much more productive."</p>
+            <div class="testimonial-author">Coming soon</div>
+            <div class="testimonial-role">Be the first to share your experience!</div>
+        </div>
+    </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+    <div class="section-label reveal" style="text-align:center;">Download</div>
+    <h2 class="section-title reveal" style="text-align:center;">Get RehearsAI today</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 16px;">Available on Android and Windows. iOS coming soon.</p>
+
+    <div class="download-buttons">
+        <a href="https://play.google.com/store/apps/details?id=com.theatro.app" class="download-btn reveal" target="_blank">
+            <span class="download-btn-icon">🤖</span>
+            <div class="download-btn-text">
+                <small>Download on</small>
+                <strong>Google Play</strong>
+            </div>
+        </a>
+        <a href="#" class="download-btn reveal">
+            <span class="download-btn-icon">💻</span>
+            <div class="download-btn-text">
+                <small>Download for</small>
+                <strong>Windows</strong>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#" class="logo">Rehears<span>AI</span></a>
+            <p>AI-powered script extraction and collaborative rehearsal for theater groups worldwide.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#download">Download</a>
+        </div>
+        <div class="footer-links">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="mailto:support@rehearsai.com">Contact</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 RehearsAI. All rights reserved.</span>
+        <span>Made with 🎭 for theater lovers</span>
+    </div>
+</footer>
+
+<!-- SCROLL REVEAL -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
