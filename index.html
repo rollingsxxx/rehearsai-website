@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RehearsAI — AI-Powered Theater Rehearsal App</title>
-    <meta name="description" content="Upload any script and AI extracts all dialogues. Share with your theater group, record voices, rehearse with TTS. Available on Android & Windows.">
+    <meta name="description" content="Upload any script and AI extracts all dialogues. Share with your theater group, record voices, rehearse with TTS. Available on Android, iOS & Windows.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -21,9 +21,7 @@
             --text-muted: #9B94AD;
             --green: #22C55E;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--deep);
@@ -31,8 +29,6 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* ══════ GRAIN OVERLAY ══════ */
         body::after {
             content: '';
             position: fixed;
@@ -42,624 +38,107 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             z-index: 9999;
         }
-
-        /* ══════ NAVIGATION ══════ */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
+            position: fixed; top: 0; width: 100%; z-index: 100;
             padding: 16px 0;
             backdrop-filter: blur(20px);
             background: rgba(13, 11, 26, 0.8);
             border-bottom: 1px solid rgba(168, 85, 247, 0.1);
         }
-
         .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1100px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text);
-            text-decoration: none;
-        }
-
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--text); text-decoration: none; }
         .logo span { color: var(--accent); }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
+        .nav-links { display: flex; gap: 24px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-soft); }
-
-        .nav-cta {
-            background: var(--accent);
-            color: white !important;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-weight: 600 !important;
-            transition: transform 0.2s, box-shadow 0.3s !important;
+        .nav-cta { background: var(--accent); color: white !important; padding: 8px 20px; border-radius: 8px; font-weight: 600 !important; transition: transform 0.2s, box-shadow 0.3s !important; }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-glow); }
+        .lang-select { background: var(--card); color: var(--text); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 8px; font-size: 13px; cursor: pointer; outline: none; }
+        .lang-select option { background: var(--card); color: var(--text); }
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 120px 24px 80px; }
+        .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(168,85,247,0.08), transparent), radial-gradient(ellipse 40% 60% at 80% 30%, rgba(59,130,246,0.06), transparent), radial-gradient(ellipse 50% 40% at 50% 80%, rgba(168,85,247,0.04), transparent); }
+        .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-badge { display: inline-block; padding: 6px 16px; border: 1px solid rgba(168,85,247,0.3); border-radius: 100px; font-size: 13px; color: var(--accent-soft); margin-bottom: 28px; animation: fadeInUp 0.8s ease; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 6vw, 72px); font-weight: 900; line-height: 1.1; margin-bottom: 24px; animation: fadeInUp 0.8s ease 0.1s both; }
+        .hero h1 em { font-style: italic; color: var(--accent); }
+        .hero-desc { font-size: 19px; color: var(--text-muted); max-width: 560px; line-height: 1.7; margin-bottom: 40px; animation: fadeInUp 0.8s ease 0.2s both; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.3s both; }
+        .btn-primary { background: var(--accent); color: white; padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.3s; border: none; cursor: pointer; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+        .btn-secondary { background: var(--card); color: var(--text); padding: 14px 32px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.08); transition: transform 0.2s, border-color 0.3s; }
+        .btn-secondary:hover { transform: translateY(-2px); border-color: rgba(168,85,247,0.3); }
+        section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 12px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+        .section-desc { font-size: 17px; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 56px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .feature-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 36px 28px; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; }
+        .feature-card:hover { transform: translateY(-4px); border-color: rgba(168,85,247,0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+        .feature-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+        .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .steps { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+        .step { flex: 1; min-width: 240px; max-width: 320px; text-align: center; }
+        .step-number { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; margin: 0 auto 20px; color: white; }
+        .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .step p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 700px; margin: 0 auto; }
+        .price-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 40px 32px; text-align: center; }
+        .price-card.featured { border-color: var(--accent); position: relative; box-shadow: 0 0 40px var(--accent-glow); }
+        .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 4px 16px; border-radius: 100px; font-size: 12px; font-weight: 700; }
+        .price-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .price-amount { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900; margin: 16px 0; }
+        .price-amount span { font-size: 18px; font-weight: 400; color: var(--text-muted); }
+        .price-list { list-style: none; text-align: left; margin: 24px 0; }
+        .price-list li { padding: 8px 0; font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 10px; }
+        .price-list li::before { content: '\2713'; color: var(--green); font-weight: 700; }
+        .price-list li.disabled { opacity: 0.4; }
+        .price-list li.disabled::before { content: '\2717'; color: #666; }
+        .download-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+        .download-btn { background: var(--card); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 20px 32px; text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 16px; transition: transform 0.2s, border-color 0.3s; min-width: 240px; }
+        .download-btn:hover { transform: translateY(-3px); border-color: var(--accent); }
+        .download-btn-icon { font-size: 32px; }
+        .download-btn-text { text-align: left; }
+        .download-btn-text small { font-size: 12px; color: var(--text-muted); display: block; }
+        .download-btn-text strong { font-size: 16px; }
+        .video-placeholder { max-width: 720px; margin: 0 auto; aspect-ratio: 16/9; background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 48px; }
+        .video-placeholder p { font-size: 14px; color: var(--text-muted); margin-top: 12px; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .testimonial { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 28px; }
+        .testimonial-stars { color: var(--gold); margin-bottom: 12px; }
+        .testimonial p { font-size: 15px; font-style: italic; line-height: 1.6; color: var(--text-muted); margin-bottom: 16px; }
+        .testimonial-author { font-size: 14px; font-weight: 600; color: var(--text); }
+        .testimonial-role { font-size: 12px; color: var(--text-muted); }
+        .contact-form { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .contact-form input, .contact-form select, .contact-form textarea {
+            padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+            background: var(--card); color: var(--text); font-size: 14px; font-family: 'DM Sans', sans-serif;
         }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-
-        /* ══════ HERO ══════ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: 120px 24px 80px;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(ellipse 60% 50% at 20% 50%, rgba(168, 85, 247, 0.08), transparent),
-                radial-gradient(ellipse 40% 60% at 80% 30%, rgba(59, 130, 246, 0.06), transparent),
-                radial-gradient(ellipse 50% 40% at 50% 80%, rgba(168, 85, 247, 0.04), transparent);
-        }
-
-        .hero-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 100px;
-            font-size: 13px;
-            color: var(--accent-soft);
-            margin-bottom: 28px;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(42px, 6vw, 72px);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease 0.1s both;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        .hero-desc {
-            font-size: 19px;
-            color: var(--text-muted);
-            max-width: 560px;
-            line-height: 1.7;
-            margin-bottom: 40px;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.3s both;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .contact-form textarea { resize: vertical; }
+        .contact-form button {
+            padding: 14px 32px; border-radius: 10px; border: none;
+            background: var(--accent); color: white; font-size: 16px; font-weight: 600; cursor: pointer;
             transition: transform 0.2s, box-shadow 0.3s;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        .btn-secondary {
-            background: var(--card);
-            color: var(--text);
-            padding: 14px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: transform 0.2s, border-color 0.3s;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            border-color: rgba(168, 85, 247, 0.3);
-        }
-
-        /* ══════ SECTIONS ══════ */
-        section {
-            padding: 100px 24px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 700;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-
-        .section-desc {
-            font-size: 17px;
-            color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.6;
-            margin-bottom: 56px;
-        }
-
-        /* ══════ FEATURES ══════ */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .feature-card {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 36px 28px;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 85, 247, 0.2);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-        }
-
-        .feature-icon {
-            font-size: 36px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ══════ HOW IT WORKS ══════ */
-        .steps {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .step {
-            flex: 1;
-            min-width: 240px;
-            max-width: 320px;
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 800;
-            margin: 0 auto 20px;
-            color: white;
-        }
-
-        .step h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ══════ PRICING ══════ */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .price-card {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 40px 32px;
-            text-align: center;
-        }
-
-        .price-card.featured {
-            border-color: var(--accent);
-            position: relative;
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-
-        .price-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            padding: 4px 16px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .price-card h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .price-amount {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 900;
-            margin: 16px 0;
-        }
-
-        .price-amount span {
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
-
-        .price-list {
-            list-style: none;
-            text-align: left;
-            margin: 24px 0;
-        }
-
-        .price-list li {
-            padding: 8px 0;
-            font-size: 14px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .price-list li::before {
-            content: '✓';
-            color: var(--green);
-            font-weight: 700;
-        }
-
-        .price-list li.disabled {
-            opacity: 0.4;
-        }
-
-        .price-list li.disabled::before {
-            content: '✗';
-            color: #666;
-        }
-
-        /* ══════ DOWNLOAD ══════ */
-        #download {
-            text-align: center;
-        }
-
-        .download-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .download-btn {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px;
-            padding: 20px 32px;
-            text-decoration: none;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: transform 0.2s, border-color 0.3s;
-            min-width: 240px;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
-
-        .download-btn-icon { font-size: 32px; }
-
-        .download-btn-text {
-            text-align: left;
-        }
-
-        .download-btn-text small {
-            font-size: 12px;
-            color: var(--text-muted);
-            display: block;
-        }
-
-        .download-btn-text strong {
-            font-size: 16px;
-        }
-
-        /* ══════ VIDEO ══════ */
-        #video { text-align: center; }
-
-        .video-placeholder {
-            max-width: 720px;
-            margin: 0 auto;
-            aspect-ratio: 16/9;
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-placeholder p {
-            position: absolute;
-            bottom: 20px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* ══════ TESTIMONIALS ══════ */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .testimonial {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 28px;
-        }
-
-        .testimonial-stars { color: var(--gold); margin-bottom: 12px; }
-
-        .testimonial p {
-            font-size: 15px;
-            font-style: italic;
-            line-height: 1.6;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .testimonial-author {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .testimonial-role {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* ══════ QR CODE ══════ */
-        .qr-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .qr-box {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-            text-align: center;
-        }
-
-        .qr-box img {
-            width: 160px;
-            height: 160px;
-            border-radius: 8px;
-        }
-
-        .qr-box p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 12px;
-        }
-
-        /* ══════ CONTACT ══════ */
-        .contact-options {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 32px;
-        }
-
-        .contact-card {
-            background: var(--card);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 28px 32px;
-            text-align: center;
-            min-width: 240px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(168, 85, 247, 0.2);
-        }
-
-        .contact-card-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-        .contact-card h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .contact-card p {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .contact-card a {
-            color: var(--accent-soft);
-            text-decoration: none;
-        }
-
-        /* ══════ FOOTER ══════ */
-        footer {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 60px 24px 40px;
-        }
-
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
-        }
-
+        .contact-form button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+        footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 24px 40px; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
         .footer-brand .logo { font-size: 20px; }
-        .footer-brand p {
-            color: var(--text-muted);
-            font-size: 13px;
-            margin-top: 12px;
-            line-height: 1.5;
-        }
-
-        .footer-links h4 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text);
-        }
-
-        .footer-links a {
-            display: block;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 13px;
-            padding: 4px 0;
-            transition: color 0.2s;
-        }
-
+        .footer-brand p { color: var(--text-muted); font-size: 13px; margin-top: 12px; line-height: 1.5; }
+        .footer-links h4 { font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+        .footer-links a { display: block; color: var(--text-muted); text-decoration: none; font-size: 13px; padding: 4px 0; transition: color 0.2s; }
         .footer-links a:hover { color: var(--accent-soft); }
-
-        .footer-bottom {
-            max-width: 1100px;
-            margin: 40px auto 0;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* ══════ ANIMATIONS ══════ */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ══════ RESPONSIVE ══════ */
+        .footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.04); display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--deep); padding: 20px; gap: 16px; border-bottom: 1px solid rgba(168,85,247,0.1); }
+            .menu-toggle { display: block; }
             .hero h1 { font-size: 36px; }
             .hero-desc { font-size: 16px; }
             .footer-inner { grid-template-columns: 1fr; }
@@ -667,301 +146,291 @@
             .steps { flex-direction: column; align-items: center; }
             .pricing-grid { grid-template-columns: 1fr; }
         }
-
-        /* ══════ HAMBURGER ══════ */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-        }
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .price-list { text-align: right; }
+        [dir="rtl"] .price-list li { flex-direction: row-reverse; }
+        [dir="rtl"] .download-btn-text { text-align: right; }
+        [dir="rtl"] .footer-inner { direction: rtl; }
     </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav>
     <div class="nav-inner">
         <a href="#" class="logo">Rehears<span>AI</span></a>
         <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how-it-works">How it Works</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#download">Download</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#download" class="nav-cta">Get Started</a></li>
+            <li><a href="#features" data-i18n="nav_features">Features</a></li>
+            <li><a href="#how-it-works" data-i18n="nav_how">How it Works</a></li>
+            <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
+            <li><a href="#download" data-i18n="nav_download">Download</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            <li>
+                <select class="lang-select" id="langSwitcher" onchange="setLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Fran&#231;ais</option>
+                    <option value="es">Espa&#241;ol</option>
+                    <option value="it">Italiano</option>
+                    <option value="tr">T&#252;rk&#231;e</option>
+                    <option value="ar">&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</option>
+                </select>
+            </li>
+            <li><a href="#download" class="nav-cta" data-i18n="nav_cta">Get Started</a></li>
         </ul>
-        <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">&#9776;</button>
     </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
     <div class="hero-bg"></div>
     <div class="hero-inner">
-        <div class="hero-badge">🎭 AI-Powered Theater Rehearsal</div>
-        <h1>Your script.<br>Every voice.<br><em>One app.</em></h1>
-        <p class="hero-desc">Upload any theater script and let AI extract all characters and dialogues instantly. Share with your group, record voices, and rehearse together — anywhere, anytime.</p>
+        <div class="hero-badge" data-i18n="hero_badge">&#127917; AI-Powered Theater Rehearsal</div>
+        <h1 data-i18n-html="hero_title">Your script.<br>Every voice.<br><em>One app.</em></h1>
+        <p class="hero-desc" data-i18n="hero_desc">Upload any theater script and let AI extract all characters and dialogues instantly. Share with your group, record voices, and rehearse together — anywhere, anytime.</p>
         <div class="hero-buttons">
-            <a href="#download" class="btn-primary">▶ Get RehearsAI Free</a>
-            <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+            <a href="#download" class="btn-primary" data-i18n="hero_cta">&#9654; Get RehearsAI Free</a>
+            <a href="#how-it-works" class="btn-secondary" data-i18n="hero_how">See How It Works</a>
         </div>
     </div>
 </header>
 
-<!-- FEATURES -->
 <section id="features">
-    <div class="section-label reveal">Features</div>
-    <h2 class="section-title reveal">Everything your theater group needs</h2>
-    <p class="section-desc reveal">From script to stage — RehearsAI handles the tedious work so you can focus on the performance.</p>
-
+    <div class="section-label reveal" data-i18n="feat_label">Features</div>
+    <h2 class="section-title reveal" data-i18n="feat_title">Everything your theater group needs</h2>
+    <p class="section-desc reveal" data-i18n="feat_desc">From script to stage — RehearsAI handles the tedious work so you can focus on the performance.</p>
     <div class="features-grid">
         <div class="feature-card reveal">
-            <span class="feature-icon">🤖</span>
-            <h3>AI Script Extraction</h3>
-            <p>Upload a PDF, Word, or text file. Enter character names and AI extracts all dialogues automatically — in any language. Works in seconds, not hours.</p>
+            <span class="feature-icon">&#129302;</span>
+            <h3 data-i18n="f1t">AI Script Extraction</h3>
+            <p data-i18n="f1d">Upload a PDF, Word, or text file. Enter character names and AI extracts all dialogues automatically — in any language.</p>
         </div>
         <div class="feature-card reveal">
-            <span class="feature-icon">👥</span>
-            <h3>Team Collaboration</h3>
-            <p>Share your project with a simple room code. Each actor selects their role. The director manages scenes, edits, and controls who can join.</p>
+            <span class="feature-icon">&#128101;</span>
+            <h3 data-i18n="f2t">Team Collaboration</h3>
+            <p data-i18n="f2d">Share your project with a simple room code. Each actor selects their role. The director manages scenes and controls access.</p>
         </div>
         <div class="feature-card reveal">
-            <span class="feature-icon">🎤</span>
-            <h3>Voice Recording</h3>
-            <p>Record your lines and share them with the team via cloud. Download other actors' recordings to rehearse with real voices — compressed for minimal data usage.</p>
+            <span class="feature-icon">&#127908;</span>
+            <h3 data-i18n="f3t">Voice Recording</h3>
+            <p data-i18n="f3d">Record your lines and share them with the team via cloud. Download other actors' recordings to rehearse with real voices.</p>
         </div>
         <div class="feature-card reveal">
-            <span class="feature-icon">🗣️</span>
-            <h3>Text-to-Speech</h3>
-            <p>Assign unique AI voices with adjustable pitch to each character. Rehearse the full scene solo with different voices — perfect for learning your cues.</p>
+            <span class="feature-icon">&#128483;&#65039;</span>
+            <h3 data-i18n="f4t">Text-to-Speech</h3>
+            <p data-i18n="f4d">Assign unique AI voices with adjustable pitch to each character. Rehearse the full scene solo with different voices.</p>
         </div>
         <div class="feature-card reveal">
-            <span class="feature-icon">🎬</span>
-            <h3>Scene Management</h3>
-            <p>Organize your script by scenes. Jump to any scene during rehearsal. See previous and next lines for context while practicing.</p>
+            <span class="feature-icon">&#127916;</span>
+            <h3 data-i18n="f5t">Scene Management</h3>
+            <p data-i18n="f5d">Organize your script by scenes. Jump to any scene during rehearsal. See previous and next lines for context.</p>
         </div>
         <div class="feature-card reveal">
-            <span class="feature-icon">🌍</span>
-            <h3>Multiple Languages</h3>
-            <p>Full interface in English, German, French, Spanish, Italian, Turkish, and Arabic. Works with scripts in any language.</p>
+            <span class="feature-icon">&#127758;</span>
+            <h3 data-i18n="f6t">Multiple Languages</h3>
+            <p data-i18n="f6d">Full interface in English, German, French, Spanish, Italian, Turkish, and Arabic. Works with scripts in any language.</p>
         </div>
     </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section id="how-it-works">
-    <div class="section-label reveal">How it works</div>
-    <h2 class="section-title reveal">From script to rehearsal in 3 steps</h2>
-    <p class="section-desc reveal">No manual copying. No retyping. Just upload and go.</p>
-
+    <div class="section-label reveal" data-i18n="how_label">How it works</div>
+    <h2 class="section-title reveal" data-i18n="how_title">From script to rehearsal in 3 steps</h2>
+    <p class="section-desc reveal" data-i18n="how_desc">No manual copying. No retyping. Just upload and go.</p>
     <div class="steps">
         <div class="step reveal">
             <div class="step-number">1</div>
-            <h3>Upload Your Script</h3>
-            <p>Upload any script file — PDF, Word, or plain text. Enter the character names and let AI do the rest.</p>
+            <h3 data-i18n="s1t">Upload Your Script</h3>
+            <p data-i18n="s1d">Upload any script file — PDF, Word, or plain text. Enter the character names and let AI do the rest.</p>
         </div>
         <div class="step reveal">
             <div class="step-number">2</div>
-            <h3>Share With Your Group</h3>
-            <p>Get a room code and share it with your actors. Everyone joins, picks their role, and sees their lines.</p>
+            <h3 data-i18n="s2t">Share With Your Group</h3>
+            <p data-i18n="s2d">Get a room code and share it with your actors. Everyone joins, picks their role, and sees their lines.</p>
         </div>
         <div class="step reveal">
             <div class="step-number">3</div>
-            <h3>Rehearse Together</h3>
-            <p>Practice with AI voices or real recordings. See your cues, track your progress, and export when ready.</p>
+            <h3 data-i18n="s3t">Rehearse Together</h3>
+            <p data-i18n="s3d">Practice with AI voices or real recordings. See your cues, track your progress, and export when ready.</p>
         </div>
     </div>
 </section>
 
-<!-- VIDEO -->
 <section id="video">
-    <div class="section-label reveal">See it in action</div>
-    <h2 class="section-title reveal" style="text-align:center;">Watch RehearsAI in action</h2>
-    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 40px;">See how easy it is to go from script to rehearsal.</p>
-
-    <div class="video-placeholder reveal">
-        <!-- Replace this div with: <iframe width="720" height="405" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
-        🎬
-        <p>Tutorial video coming soon</p>
-    </div>
+    <div class="section-label reveal" data-i18n="vid_label">See it in action</div>
+    <h2 class="section-title reveal" style="text-align:center;" data-i18n="vid_title">Watch RehearsAI in action</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 40px;" data-i18n="vid_desc">See how easy it is to go from script to rehearsal.</p>
+    <div class="video-placeholder reveal">&#127916;<p data-i18n="vid_soon">Tutorial video coming soon</p></div>
 </section>
 
-<!-- PRICING -->
 <section id="pricing">
-    <div class="section-label reveal" style="text-align:center;">Pricing</div>
-    <h2 class="section-title reveal" style="text-align:center;">Simple, transparent pricing</h2>
-    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 56px;">Start free. Upgrade when your group needs collaboration.</p>
-
+    <div class="section-label reveal" style="text-align:center;" data-i18n="pr_label">Pricing</div>
+    <h2 class="section-title reveal" style="text-align:center;" data-i18n="pr_title">Simple, transparent pricing</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 56px;" data-i18n="pr_desc">Start free. Upgrade when your group needs collaboration.</p>
     <div class="pricing-grid">
         <div class="price-card reveal">
             <h3>Free</h3>
-            <div class="price-amount">€0 <span>forever</span></div>
+            <div class="price-amount">&euro;0 <span data-i18n="pr_forever">forever</span></div>
             <ul class="price-list">
-                <li>2 AI script extractions</li>
-                <li>Local rehearsal with TTS</li>
-                <li>Voice recording</li>
-                <li>Scene management</li>
-                <li>Script export</li>
-                <li class="disabled">Share projects</li>
-                <li class="disabled">Cloud recordings</li>
-                <li class="disabled">Unlimited AI extractions</li>
+                <li data-i18n="pf1">2 AI script extractions</li>
+                <li data-i18n="pf2">Local rehearsal with TTS</li>
+                <li data-i18n="pf3">Voice recording</li>
+                <li data-i18n="pf4">Scene management</li>
+                <li data-i18n="pf5">Script export</li>
+                <li class="disabled" data-i18n="pf6">Share projects</li>
+                <li class="disabled" data-i18n="pf7">Cloud recordings</li>
+                <li class="disabled" data-i18n="pf8">Unlimited AI extractions</li>
             </ul>
-            <a href="#download" class="btn-secondary" style="width:100%; justify-content:center;">Get Started Free</a>
+            <a href="#download" class="btn-secondary" style="width:100%; justify-content:center;" data-i18n="pr_free_btn">Get Started Free</a>
         </div>
-
         <div class="price-card featured reveal">
-            <div class="price-badge">Most Popular</div>
+            <div class="price-badge" data-i18n="pr_popular">Most Popular</div>
             <h3>Premium</h3>
-            <div class="price-amount">€3.99 <span>/month</span></div>
+            <div class="price-amount">&euro;6.99 <span data-i18n="pr_month">/month</span></div>
             <ul class="price-list">
-                <li>Unlimited AI extractions</li>
-                <li>Share projects with team</li>
-                <li>Cloud voice recordings</li>
-                <li>Local rehearsal with TTS</li>
-                <li>Scene management</li>
-                <li>Script export</li>
-                <li>No API key needed</li>
-                <li>7-day free trial</li>
+                <li data-i18n="pp1">Unlimited AI extractions</li>
+                <li data-i18n="pp2">Share projects with team</li>
+                <li data-i18n="pp3">Cloud voice recordings</li>
+                <li data-i18n="pp4">Local rehearsal with TTS</li>
+                <li data-i18n="pp5">Scene management</li>
+                <li data-i18n="pp6">Script export</li>
+                <li data-i18n="pp7">No API key needed</li>
+                <li data-i18n="pp8">7-day free trial</li>
             </ul>
-            <a href="#download" class="btn-primary" style="width:100%; justify-content:center;">Start Free Trial</a>
-            <p style="text-align:center; margin-top:12px; font-size:12px; color:var(--text-muted);">Also available: €29.99/year (save 37%)</p>
+            <a href="#download" class="btn-primary" style="width:100%; justify-content:center;" data-i18n="pr_prem_btn">Start Free Trial</a>
+            <p style="text-align:center; margin-top:12px; font-size:12px; color:var(--text-muted);" data-i18n="pr_yearly">Also available: &euro;64.99/year (save 22%)</p>
         </div>
     </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section id="testimonials">
-    <div class="section-label reveal" style="text-align:center;">What actors say</div>
-    <h2 class="section-title reveal" style="text-align:center;">Loved by theater groups</h2>
-    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 56px;">Join theater groups who transformed their rehearsal process.</p>
-
-    <div class="testimonials-grid">
-        <div class="testimonial reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p>"The AI extracted our entire 3-act play in under a minute. What used to take us hours of copying and distributing scripts now takes seconds."</p>
-            <div class="testimonial-author">Coming soon</div>
-            <div class="testimonial-role">Be the first to share your experience!</div>
-        </div>
-        <div class="testimonial reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p>"I can rehearse my lines on the bus with AI voices playing the other characters. It's like having a scene partner in my pocket."</p>
-            <div class="testimonial-author">Coming soon</div>
-            <div class="testimonial-role">Be the first to share your experience!</div>
-        </div>
-        <div class="testimonial reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p>"Sharing recordings with the group changed everything. We could hear each other's lines before meeting in person. Rehearsals became so much more productive."</p>
-            <div class="testimonial-author">Coming soon</div>
-            <div class="testimonial-role">Be the first to share your experience!</div>
-        </div>
-    </div>
+    <div class="section-label reveal" style="text-align:center;" data-i18n="te_label">What actors say</div>
+    <h2 class="section-title reveal" style="text-align:center;" data-i18n="te_title">Loved by theater groups</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 56px;" data-i18n="te_desc">Join theater groups who transformed their rehearsal process.</p>
 </section>
 
-<!-- DOWNLOAD -->
 <section id="download">
-    <div class="section-label reveal" style="text-align:center;">Download</div>
-    <h2 class="section-title reveal" style="text-align:center;">Get RehearsAI today</h2>
-    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 16px;">Available on Android and Windows. iOS coming soon.</p>
-
+    <div class="section-label reveal" style="text-align:center;" data-i18n="dl_label">Download</div>
+    <h2 class="section-title reveal" style="text-align:center;" data-i18n="dl_title">Get RehearsAI today</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 16px;" data-i18n="dl_desc">Available on Android, iOS and Windows.</p>
     <div class="download-buttons">
         <div class="download-btn reveal">
-            <span class="download-btn-icon">🤖</span>
+            <span class="download-btn-icon">&#129302;</span>
             <div class="download-btn-text">
                 <small>Android</small>
-                <strong>Search "RehearsAI" on Google Play</strong>
+                <strong data-i18n="dl_and_search">Search "RehearsAI" on Google Play</strong>
             </div>
         </div>
-        <a href="RehearsAI_Setup.zip" class="download-btn reveal" download>
-            <span class="download-btn-icon">💻</span>
+        <div class="download-btn reveal">
+            <span class="download-btn-icon">&#127822;</span>
             <div class="download-btn-text">
-                <small>Download for</small>
+                <small>iOS</small>
+                <strong data-i18n="dl_ios_search">Search "RehearsAI" on App Store</strong>
+            </div>
+        </div>
+        <a href="https://github.com/rollingsxxx/rehearsai-website/releases/latest" class="download-btn reveal" target="_blank">
+            <span class="download-btn-icon">&#128187;</span>
+            <div class="download-btn-text">
+                <small data-i18n="dl_win_sub">Script editing &amp; project management</small>
                 <strong>Windows</strong>
             </div>
         </a>
     </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-    <div class="section-label reveal" style="text-align:center;">Support</div>
-    <h2 class="section-title reveal" style="text-align:center;">Get in touch</h2>
-    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 32px;">Found a bug? Have a feature idea? Need help? We'd love to hear from you.</p>
-
-    <div class="contact-options">
-        <div class="contact-card reveal">
-            <div class="contact-card-icon">📧</div>
-            <h3>Email</h3>
-            <p><a href="mailto:support@rehearsaiapp.com">support@rehearsaiapp.com</a></p>
-        </div>
-        <div class="contact-card reveal">
-            <div class="contact-card-icon">🐛</div>
-            <h3>Bug Report</h3>
-            <p><a href="mailto:support@rehearsaiapp.com?subject=Bug%20Report">Report a bug</a></p>
-        </div>
-        <div class="contact-card reveal">
-            <div class="contact-card-icon">💡</div>
-            <h3>Feature Request</h3>
-            <p><a href="mailto:support@rehearsaiapp.com?subject=Feature%20Request">Suggest a feature</a></p>
-        </div>
-    </div>
+    <div class="section-label reveal" style="text-align:center;" data-i18n="ct_label">Support</div>
+    <h2 class="section-title reveal" style="text-align:center;" data-i18n="ct_title">Get in touch</h2>
+    <p class="section-desc reveal" style="text-align:center; margin: 0 auto 32px;" data-i18n="ct_desc">Found a bug? Have a feature idea? Need help?</p>
+    <form class="contact-form reveal" action="https://formspree.io/f/mvzvgegz" method="POST"
+	style="max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+        <input type="email" name="email" required data-i18n-placeholder="ct_email_ph" placeholder="Your email">
+        <select name="type">
+            <option value="bug" data-i18n="ct_bug">Bug Report</option>
+            <option value="feature" data-i18n="ct_feature">Feature Request</option>
+            <option value="question" data-i18n="ct_question">Question</option>
+            <option value="other" data-i18n="ct_other">Other</option>
+        </select>
+        <textarea name="message" rows="4" required data-i18n-placeholder="ct_msg_ph" placeholder="Your message"></textarea>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" data-i18n="ct_send">Send Message</button>
+    </form>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-inner">
         <div class="footer-brand">
             <a href="#" class="logo">Rehears<span>AI</span></a>
-            <p>AI-powered script extraction and collaborative rehearsal for theater groups worldwide.</p>
+            <p data-i18n="ft_desc">AI-powered script extraction and collaborative rehearsal for theater groups worldwide.</p>
         </div>
         <div class="footer-links">
-            <h4>Product</h4>
-            <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#download">Download</a>
-            <a href="#contact">Contact</a>
+            <h4 data-i18n="ft_product">Product</h4>
+            <a href="#features" data-i18n="nav_features">Features</a>
+            <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+            <a href="#download" data-i18n="nav_download">Download</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
         </div>
         <div class="footer-links">
-            <h4>Legal</h4>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="impressum.html">Impressum</a>
-            <a href="mailto:support@rehearsaiapp.com">support@rehearsaiapp.com</a>
+            <h4 data-i18n="ft_legal">Legal</h4>
+            <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+            <a href="impressum.html" data-i18n="ft_imprint">Impressum</a>
+            <a href="delete.html" data-i18n="ft_delete">Delete Data</a>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>© 2026 RehearsAI. All rights reserved.</span>
-        <span>Made with 🎭 for theater lovers</span>
+        <span>&copy; 2026 RehearsAI. All rights reserved.</span>
+        <span data-i18n="ft_made">Made with &#127917; for theater lovers</span>
     </div>
 </footer>
 
-<!-- SCROLL REVEAL -->
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
+const T={
+en:{dl_and_search:'Search "RehearsAI" on Google Play',dl_ios_search:'Search "RehearsAI" on App Store',nav_features:"Features",nav_how:"How it Works",nav_pricing:"Pricing",nav_download:"Download",nav_contact:"Contact",nav_cta:"Get Started",hero_badge:"\u{1F3AD} AI-Powered Theater Rehearsal",hero_title:"Your script.<br>Every voice.<br><em>One app.</em>",hero_desc:"Upload any theater script and let AI extract all characters and dialogues instantly. Share with your group, record voices, and rehearse together \u2014 anywhere, anytime.",hero_cta:"\u25B6 Get RehearsAI Free",hero_how:"See How It Works",feat_label:"Features",feat_title:"Everything your theater group needs",feat_desc:"From script to stage \u2014 RehearsAI handles the tedious work so you can focus on the performance.",f1t:"AI Script Extraction",f1d:"Upload a PDF, Word, or text file. Enter character names and AI extracts all dialogues automatically \u2014 in any language.",f2t:"Team Collaboration",f2d:"Share your project with a simple room code. Each actor selects their role. The director manages scenes and controls access.",f3t:"Voice Recording",f3d:"Record your lines and share them with the team via cloud. Download other actors' recordings to rehearse with real voices.",f4t:"Text-to-Speech",f4d:"Assign unique AI voices with adjustable pitch to each character. Rehearse the full scene solo with different voices.",f5t:"Scene Management",f5d:"Organize your script by scenes. Jump to any scene during rehearsal. See previous and next lines for context.",f6t:"Multiple Languages",f6d:"Full interface in English, German, French, Spanish, Italian, Turkish, and Arabic. Works with scripts in any language.",how_label:"How it works",how_title:"From script to rehearsal in 3 steps",how_desc:"No manual copying. No retyping. Just upload and go.",s1t:"Upload Your Script",s1d:"Upload any script file \u2014 PDF, Word, or plain text. Enter the character names and let AI do the rest.",s2t:"Share With Your Group",s2d:"Get a room code and share it with your actors. Everyone joins, picks their role, and sees their lines.",s3t:"Rehearse Together",s3d:"Practice with AI voices or real recordings. See your cues, track your progress, and export when ready.",vid_label:"See it in action",vid_title:"Watch RehearsAI in action",vid_desc:"See how easy it is to go from script to rehearsal.",vid_soon:"Tutorial video coming soon",pr_label:"Pricing",pr_title:"Simple, transparent pricing",pr_desc:"Start free. Upgrade when your group needs collaboration.",pr_forever:"forever",pr_month:"/month",pr_popular:"Most Popular",pf1:"2 AI script extractions",pf2:"Local rehearsal with TTS",pf3:"Voice recording",pf4:"Scene management",pf5:"Script export",pf6:"Share projects",pf7:"Cloud recordings",pf8:"Unlimited AI extractions",pp1:"Unlimited AI extractions",pp2:"Share projects with team",pp3:"Cloud voice recordings",pp4:"Local rehearsal with TTS",pp5:"Scene management",pp6:"Script export",pp7:"No API key needed",pp8:"7-day free trial",pr_free_btn:"Get Started Free",pr_prem_btn:"Start Free Trial",pr_yearly:"Also available: \u20AC64.99/year (save 22%)",te_label:"What actors say",te_title:"Loved by theater groups",te_desc:"Join theater groups who transformed their rehearsal process.",t1:"\"The AI extracted our entire 3-act play in under a minute. What used to take hours now takes seconds.\"",t2:"\"I can rehearse my lines on the bus with AI voices. It's like having a scene partner in my pocket.\"",t3:"\"Sharing recordings with the group changed everything. Rehearsals became so much more productive.\"",t_soon:"Coming soon",t_first:"Be the first to share your experience!",dl_label:"Download",dl_title:"Get RehearsAI today",dl_desc:"Available on Android, iOS and Windows.",dl_and_sub:"Full experience \u2014 rehearsal, recording & collaboration",dl_ios_sub:"Coming soon on",dl_win_sub:"Script editing & project management",ct_label:"Support",ct_title:"Get in touch",ct_desc:"Found a bug? Have a feature idea? Need help?",ct_email_ph:"Your email",ct_bug:"Bug Report",ct_feature:"Feature Request",ct_question:"Question",ct_other:"Other",ct_msg_ph:"Your message",ct_send:"Send Message",ft_desc:"AI-powered script extraction and collaborative rehearsal for theater groups worldwide.",ft_product:"Product",ft_legal:"Legal",ft_privacy:"Privacy Policy",ft_imprint:"Impressum",ft_delete:"Delete Data",ft_made:"Made with \u{1F3AD} for theater lovers"},
+de:{dl_and_search:'Suche "RehearsAI" im Google Play',dl_ios_search:'Suche "RehearsAI" im App Store',nav_features:"Funktionen",nav_how:"So funktioniert's",nav_pricing:"Preise",nav_download:"Download",nav_contact:"Kontakt",nav_cta:"Loslegen",hero_badge:"\u{1F3AD} KI-gest\u00FCtzte Theaterprobe",hero_title:"Dein Skript.<br>Jede Stimme.<br><em>Eine App.</em>",hero_desc:"Lade ein Theaterskript hoch und lass die KI alle Charaktere und Dialoge sofort extrahieren. Teile mit deiner Gruppe, nimm Stimmen auf und probt gemeinsam.",hero_cta:"\u25B6 RehearsAI kostenlos",hero_how:"So funktioniert's",feat_label:"Funktionen",feat_title:"Alles was deine Theatergruppe braucht",feat_desc:"Vom Skript zur B\u00FChne \u2014 RehearsAI erledigt die m\u00FChsame Arbeit.",f1t:"KI-Skriptextraktion",f1d:"Lade PDF, Word oder Text hoch. Gib Charakternamen ein und die KI extrahiert alle Dialoge automatisch \u2014 in jeder Sprache.",f2t:"Teamarbeit",f2d:"Teile dein Projekt mit einem Raumcode. Jeder Schauspieler w\u00E4hlt seine Rolle. Der Regisseur verwaltet alles.",f3t:"Sprachaufnahme",f3d:"Nimm deine Zeilen auf und teile sie \u00FCber die Cloud. Lade Aufnahmen anderer herunter.",f4t:"Text-zu-Sprache",f4d:"Weise jedem Charakter einzigartige KI-Stimmen zu. Probe die gesamte Szene solo.",f5t:"Szenenverwaltung",f5d:"Organisiere dein Skript nach Szenen. Springe zu jeder Szene w\u00E4hrend der Probe.",f6t:"Mehrere Sprachen",f6d:"Vollst\u00E4ndige Oberfl\u00E4che in Englisch, Deutsch, Franz\u00F6sisch, Spanisch, Italienisch, T\u00FCrkisch und Arabisch.",how_label:"So funktioniert's",how_title:"Vom Skript zur Probe in 3 Schritten",how_desc:"Kein manuelles Kopieren. Einfach hochladen und loslegen.",s1t:"Skript hochladen",s1d:"Lade eine Skriptdatei hoch \u2014 PDF, Word oder Text. Gib die Charakternamen ein.",s2t:"Mit der Gruppe teilen",s2d:"Erhalte einen Raumcode und teile ihn. Jeder tritt bei und w\u00E4hlt seine Rolle.",s3t:"Gemeinsam proben",s3d:"\u00DCbe mit KI-Stimmen oder echten Aufnahmen. Verfolge deinen Fortschritt.",vid_label:"In Aktion",vid_title:"RehearsAI in Aktion",vid_desc:"Sieh wie einfach es vom Skript zur Probe geht.",vid_soon:"Tutorial-Video kommt bald",pr_label:"Preise",pr_title:"Einfache, transparente Preise",pr_desc:"Starte kostenlos. Upgrade wenn deine Gruppe Zusammenarbeit braucht.",pr_forever:"f\u00FCr immer",pr_month:"/Monat",pr_popular:"Am beliebtesten",pf1:"2 KI-Skriptextraktionen",pf2:"Lokale Probe mit TTS",pf3:"Sprachaufnahme",pf4:"Szenenverwaltung",pf5:"Skript-Export",pf6:"Projekte teilen",pf7:"Cloud-Aufnahmen",pf8:"Unbegrenzte KI-Extraktionen",pp1:"Unbegrenzte KI-Extraktionen",pp2:"Projekte mit Team teilen",pp3:"Cloud-Sprachaufnahmen",pp4:"Lokale Probe mit TTS",pp5:"Szenenverwaltung",pp6:"Skript-Export",pp7:"Kein API-Schl\u00FCssel n\u00F6tig",pp8:"7 Tage kostenlos testen",pr_free_btn:"Kostenlos starten",pr_prem_btn:"Kostenlos testen",pr_yearly:"Auch verf\u00FCgbar: \u20AC64,99/Jahr (22% sparen)",te_label:"Was Schauspieler sagen",te_title:"Beliebt bei Theatergruppen",te_desc:"Schlie\u00DFe dich Gruppen an die ihren Probenprozess transformiert haben.",t1:"\"Die KI hat unser 3-Akt-St\u00FCck in unter einer Minute extrahiert. Was Stunden dauerte dauert jetzt Sekunden.\"",t2:"\"Ich kann im Bus mit KI-Stimmen \u00FCben. Wie ein Szenenpartner in meiner Tasche.\"",t3:"\"Das Teilen von Aufnahmen hat alles ver\u00E4ndert. Proben wurden viel produktiver.\"",t_soon:"Kommt bald",t_first:"Sei der Erste der seine Erfahrung teilt!",dl_label:"Download",dl_title:"Hol dir RehearsAI",dl_desc:"Verf\u00FCgbar f\u00FCr Android, iOS und Windows.",dl_and_sub:"Volles Erlebnis \u2014 Probe, Aufnahme & Zusammenarbeit",dl_ios_sub:"Bald verf\u00FCgbar im",dl_win_sub:"Skript-Bearbeitung & Projektverwaltung",ct_label:"Support",ct_title:"Kontaktiere uns",ct_desc:"Fehler gefunden? Feature-Idee? Hilfe ben\u00F6tigt?",ct_email_ph:"Deine E-Mail",ct_bug:"Fehlerbericht",ct_feature:"Feature-Wunsch",ct_question:"Frage",ct_other:"Sonstiges",ct_msg_ph:"Deine Nachricht",ct_send:"Nachricht senden",ft_desc:"KI-gest\u00FCtzte Skriptextraktion und gemeinschaftliche Probe f\u00FCr Theatergruppen weltweit.",ft_product:"Produkt",ft_legal:"Rechtliches",ft_privacy:"Datenschutz",ft_imprint:"Impressum",ft_delete:"Daten l\u00F6schen",ft_made:"Gemacht mit \u{1F3AD} f\u00FCr Theaterliebhaber"},
+fr:{dl_and_search:'Cherchez "RehearsAI" sur Google Play',dl_ios_search:'Cherchez "RehearsAI" sur App Store',nav_features:"Fonctions",nav_how:"Comment \u00E7a marche",nav_pricing:"Tarifs",nav_download:"T\u00E9l\u00E9charger",nav_contact:"Contact",nav_cta:"Commencer",hero_badge:"\u{1F3AD} R\u00E9p\u00E9tition avec IA",hero_title:"Votre script.<br>Chaque voix.<br><em>Une app.</em>",hero_desc:"T\u00E9l\u00E9chargez un script et l'IA extrait tous les personnages et dialogues. Partagez, enregistrez et r\u00E9p\u00E9tez ensemble.",hero_cta:"\u25B6 RehearsAI gratuit",hero_how:"Comment \u00E7a marche",feat_label:"Fonctions",feat_title:"Tout pour votre troupe",feat_desc:"Du script \u00E0 la sc\u00E8ne \u2014 RehearsAI g\u00E8re le travail fastidieux.",f1t:"Extraction IA",f1d:"T\u00E9l\u00E9chargez PDF, Word ou texte. L'IA extrait tous les dialogues automatiquement.",f2t:"Collaboration",f2d:"Partagez avec un code. Chaque acteur choisit son r\u00F4le.",f3t:"Enregistrement vocal",f3d:"Enregistrez vos r\u00E9pliques et partagez via le cloud.",f4t:"Synth\u00E8se vocale",f4d:"Attribuez des voix IA uniques \u00E0 chaque personnage.",f5t:"Gestion des sc\u00E8nes",f5d:"Organisez par sc\u00E8nes. Passez \u00E0 n'importe quelle sc\u00E8ne.",f6t:"Multilingue",f6d:"Interface en anglais, allemand, fran\u00E7ais, espagnol, italien, turc et arabe.",how_label:"Comment \u00E7a marche",how_title:"Du script \u00E0 la r\u00E9p\u00E9tition en 3 \u00E9tapes",how_desc:"Pas de copie manuelle. T\u00E9l\u00E9chargez et c'est parti.",s1t:"T\u00E9l\u00E9chargez votre script",s1d:"T\u00E9l\u00E9chargez un fichier \u2014 PDF, Word ou texte.",s2t:"Partagez avec votre troupe",s2d:"Obtenez un code et partagez-le avec vos acteurs.",s3t:"R\u00E9p\u00E9tez ensemble",s3d:"Pratiquez avec des voix IA ou de vrais enregistrements.",vid_label:"En action",vid_title:"RehearsAI en action",vid_desc:"D\u00E9couvrez la facilit\u00E9.",vid_soon:"Vid\u00E9o bient\u00F4t",pr_label:"Tarifs",pr_title:"Prix simples et transparents",pr_desc:"Commencez gratuitement. Passez \u00E0 Premium quand n\u00E9cessaire.",pr_forever:"pour toujours",pr_month:"/mois",pr_popular:"Le plus populaire",pf1:"2 extractions IA",pf2:"R\u00E9p\u00E9tition locale avec TTS",pf3:"Enregistrement vocal",pf4:"Gestion des sc\u00E8nes",pf5:"Export du script",pf6:"Partager des projets",pf7:"Enregistrements cloud",pf8:"Extractions IA illimit\u00E9es",pp1:"Extractions IA illimit\u00E9es",pp2:"Partager avec l'\u00E9quipe",pp3:"Enregistrements cloud",pp4:"R\u00E9p\u00E9tition locale avec TTS",pp5:"Gestion des sc\u00E8nes",pp6:"Export du script",pp7:"Pas de cl\u00E9 API",pp8:"7 jours d'essai gratuit",pr_free_btn:"Commencer gratuitement",pr_prem_btn:"Essai gratuit",pr_yearly:"\u00C9galement: \u20AC64,99/an (22% d'\u00E9conomie)",te_label:"Avis",te_title:"Ador\u00E9 par les troupes",te_desc:"Rejoignez les troupes qui ont transform\u00E9 leurs r\u00E9p\u00E9titions.",t1:"\"L'IA a extrait notre pi\u00E8ce en moins d'une minute.\"",t2:"\"Je r\u00E9p\u00E8te dans le bus avec des voix IA.\"",t3:"\"Partager les enregistrements a tout chang\u00E9.\"",t_soon:"Bient\u00F4t",t_first:"Soyez le premier!",dl_label:"T\u00E9l\u00E9charger",dl_title:"Obtenez RehearsAI",dl_desc:"Disponible sur Android, iOS et Windows.",dl_and_sub:"Exp\u00E9rience compl\u00E8te \u2014 r\u00E9p\u00E9tition, enregistrement & collaboration",dl_ios_sub:"Bient\u00F4t sur",dl_win_sub:"\u00C9dition de script & gestion de projet",ct_label:"Support",ct_title:"Contactez-nous",ct_desc:"Bug? Id\u00E9e? Besoin d'aide?",ct_email_ph:"Votre email",ct_bug:"Bug",ct_feature:"Suggestion",ct_question:"Question",ct_other:"Autre",ct_msg_ph:"Votre message",ct_send:"Envoyer",ft_desc:"Extraction IA et r\u00E9p\u00E9tition collaborative pour troupes de th\u00E9\u00E2tre.",ft_product:"Produit",ft_legal:"L\u00E9gal",ft_privacy:"Confidentialit\u00E9",ft_imprint:"Mentions l\u00E9gales",ft_delete:"Supprimer les donn\u00E9es",ft_made:"Fait avec \u{1F3AD} pour les amoureux du th\u00E9\u00E2tre"},
+es:{dl_and_search:'Busca "RehearsAI" en Google Play',dl_ios_search:'Busca "RehearsAI" en App Store',nav_features:"Funciones",nav_how:"C\u00F3mo funciona",nav_pricing:"Precios",nav_download:"Descargar",nav_contact:"Contacto",nav_cta:"Comenzar",hero_badge:"\u{1F3AD} Ensayo teatral con IA",hero_title:"Tu gui\u00F3n.<br>Cada voz.<br><em>Una app.</em>",hero_desc:"Sube cualquier gui\u00F3n y la IA extrae personajes y di\u00E1logos al instante. Comparte, graba y ensaya juntos.",hero_cta:"\u25B6 RehearsAI gratis",hero_how:"C\u00F3mo funciona",feat_label:"Funciones",feat_title:"Todo para tu grupo de teatro",feat_desc:"Del gui\u00F3n al escenario \u2014 RehearsAI hace el trabajo tedioso.",f1t:"Extracci\u00F3n IA",f1d:"Sube PDF, Word o texto. La IA extrae todos los di\u00E1logos autom\u00E1ticamente.",f2t:"Colaboraci\u00F3n",f2d:"Comparte con un c\u00F3digo. Cada actor elige su papel.",f3t:"Grabaci\u00F3n de voz",f3d:"Graba tus l\u00EDneas y comp\u00E1rtelas por la nube.",f4t:"Texto a voz",f4d:"Asigna voces IA \u00FAnicas a cada personaje.",f5t:"Gesti\u00F3n de escenas",f5d:"Organiza por escenas. Salta a cualquier escena.",f6t:"Varios idiomas",f6d:"Interfaz en ingl\u00E9s, alem\u00E1n, franc\u00E9s, espa\u00F1ol, italiano, turco y \u00E1rabe.",how_label:"C\u00F3mo funciona",how_title:"Del gui\u00F3n al ensayo en 3 pasos",how_desc:"Sin copiar. Solo sube y listo.",s1t:"Sube tu gui\u00F3n",s1d:"Sube un archivo \u2014 PDF, Word o texto.",s2t:"Comparte con tu grupo",s2d:"Obt\u00E9n un c\u00F3digo y comp\u00E1rtelo.",s3t:"Ensayen juntos",s3d:"Practica con voces IA o grabaciones reales.",vid_label:"En acci\u00F3n",vid_title:"RehearsAI en acci\u00F3n",vid_desc:"Mira lo f\u00E1cil que es.",vid_soon:"Video pr\u00F3ximamente",pr_label:"Precios",pr_title:"Precios simples y transparentes",pr_desc:"Empieza gratis. Mejora cuando lo necesites.",pr_forever:"siempre",pr_month:"/mes",pr_popular:"M\u00E1s popular",pf1:"2 extracciones IA",pf2:"Ensayo local con TTS",pf3:"Grabaci\u00F3n de voz",pf4:"Gesti\u00F3n de escenas",pf5:"Exportar gui\u00F3n",pf6:"Compartir proyectos",pf7:"Grabaciones en la nube",pf8:"Extracciones ilimitadas",pp1:"Extracciones ilimitadas",pp2:"Compartir con equipo",pp3:"Grabaciones en la nube",pp4:"Ensayo local con TTS",pp5:"Gesti\u00F3n de escenas",pp6:"Exportar gui\u00F3n",pp7:"Sin clave API",pp8:"7 d\u00EDas de prueba gratis",pr_free_btn:"Empezar gratis",pr_prem_btn:"Prueba gratis",pr_yearly:"Tambi\u00E9n: \u20AC64,99/a\u00F1o (22% ahorro)",te_label:"Opiniones",te_title:"Amado por grupos teatrales",te_desc:"\u00DAnete a los grupos que transformaron sus ensayos.",t1:"\"La IA extrajo nuestra obra en menos de un minuto.\"",t2:"\"Ensayo en el bus con voces IA. Como un compa\u00F1ero en mi bolsillo.\"",t3:"\"Compartir grabaciones cambi\u00F3 todo.\"",t_soon:"Pr\u00F3ximamente",t_first:"\u00A1S\u00E9 el primero!",dl_label:"Descargar",dl_title:"Obt\u00E9n RehearsAI",dl_desc:"Disponible en Android, iOS y Windows.",dl_and_sub:"Experiencia completa \u2014 ensayo, grabaci\u00F3n y colaboraci\u00F3n",dl_ios_sub:"Pr\u00F3ximamente en",dl_win_sub:"Edici\u00F3n de guiones y gesti\u00F3n",ct_label:"Soporte",ct_title:"Cont\u00E1ctanos",ct_desc:"\u00BFError? \u00BFIdea? \u00BFAyuda?",ct_email_ph:"Tu email",ct_bug:"Error",ct_feature:"Sugerencia",ct_question:"Pregunta",ct_other:"Otro",ct_msg_ph:"Tu mensaje",ct_send:"Enviar",ft_desc:"Extracci\u00F3n IA y ensayo colaborativo para grupos teatrales.",ft_product:"Producto",ft_legal:"Legal",ft_privacy:"Privacidad",ft_imprint:"Aviso legal",ft_delete:"Eliminar datos",ft_made:"Hecho con \u{1F3AD} para amantes del teatro"},
+it:{dl_and_search:'Cerca "RehearsAI" su Google Play',dl_ios_search:'Cerca "RehearsAI" su App Store',nav_features:"Funzioni",nav_how:"Come funziona",nav_pricing:"Prezzi",nav_download:"Scarica",nav_contact:"Contatto",nav_cta:"Inizia",hero_badge:"\u{1F3AD} Prova teatrale con IA",hero_title:"Il tuo copione.<br>Ogni voce.<br><em>Un'app.</em>",hero_desc:"Carica un copione e l'IA estrae tutti i personaggi e dialoghi. Condividi, registra e prova insieme.",hero_cta:"\u25B6 RehearsAI gratis",hero_how:"Come funziona",feat_label:"Funzioni",feat_title:"Tutto per il tuo gruppo teatrale",feat_desc:"Dal copione al palco \u2014 RehearsAI gestisce il lavoro noioso.",f1t:"Estrazione IA",f1d:"Carica PDF, Word o testo. L'IA estrae tutti i dialoghi automaticamente.",f2t:"Collaborazione",f2d:"Condividi con un codice. Ogni attore sceglie il suo ruolo.",f3t:"Registrazione vocale",f3d:"Registra le battute e condividile tramite cloud.",f4t:"Sintesi vocale",f4d:"Assegna voci IA uniche a ogni personaggio.",f5t:"Gestione scene",f5d:"Organizza per scene. Passa a qualsiasi scena.",f6t:"Multilingua",f6d:"Interfaccia in inglese, tedesco, francese, spagnolo, italiano, turco e arabo.",how_label:"Come funziona",how_title:"Dal copione alla prova in 3 passi",how_desc:"Niente copie manuali. Carica e inizia.",s1t:"Carica il copione",s1d:"Carica un file \u2014 PDF, Word o testo.",s2t:"Condividi col gruppo",s2d:"Ottieni un codice e condividilo.",s3t:"Provate insieme",s3d:"Pratica con voci IA o registrazioni reali.",vid_label:"In azione",vid_title:"RehearsAI in azione",vid_desc:"Scopri quanto \u00E8 facile.",vid_soon:"Video in arrivo",pr_label:"Prezzi",pr_title:"Prezzi semplici e trasparenti",pr_desc:"Inizia gratis. Passa a Premium quando serve.",pr_forever:"per sempre",pr_month:"/mese",pr_popular:"Pi\u00F9 popolare",pf1:"2 estrazioni IA",pf2:"Prova locale con TTS",pf3:"Registrazione vocale",pf4:"Gestione scene",pf5:"Esporta copione",pf6:"Condividi progetti",pf7:"Registrazioni cloud",pf8:"Estrazioni illimitate",pp1:"Estrazioni illimitate",pp2:"Condividi con il team",pp3:"Registrazioni cloud",pp4:"Prova locale con TTS",pp5:"Gestione scene",pp6:"Esporta copione",pp7:"Nessuna chiave API",pp8:"7 giorni di prova gratuita",pr_free_btn:"Inizia gratis",pr_prem_btn:"Prova gratuita",pr_yearly:"Anche: \u20AC64,99/anno (22% risparmio)",te_label:"Cosa dicono gli attori",te_title:"Amato dai gruppi teatrali",te_desc:"Unisciti ai gruppi che hanno trasformato le prove.",t1:"\"L'IA ha estratto il nostro spettacolo in meno di un minuto.\"",t2:"\"Provo le battute sull'autobus con voci IA.\"",t3:"\"Condividere le registrazioni ha cambiato tutto.\"",t_soon:"In arrivo",t_first:"Sii il primo!",dl_label:"Scarica",dl_title:"Scarica RehearsAI",dl_desc:"Disponibile su Android, iOS e Windows.",dl_and_sub:"Esperienza completa \u2014 prova, registrazione e collaborazione",dl_ios_sub:"Presto su",dl_win_sub:"Modifica copioni e gestione progetti",ct_label:"Supporto",ct_title:"Contattaci",ct_desc:"Bug? Idea? Aiuto?",ct_email_ph:"La tua email",ct_bug:"Bug",ct_feature:"Richiesta funzione",ct_question:"Domanda",ct_other:"Altro",ct_msg_ph:"Il tuo messaggio",ct_send:"Invia",ft_desc:"Estrazione IA e prove collaborative per gruppi teatrali.",ft_product:"Prodotto",ft_legal:"Legale",ft_privacy:"Privacy",ft_imprint:"Note legali",ft_delete:"Cancella dati",ft_made:"Fatto con \u{1F3AD} per gli amanti del teatro"},
+tr:{dl_and_search:'"RehearsAI" Google Play\'da aray\u0131n',dl_ios_search:'"RehearsAI" App Store\'da aray\u0131n',nav_features:"\u00D6zellikler",nav_how:"Nas\u0131l \u00E7al\u0131\u015F\u0131r",nav_pricing:"Fiyatlar",nav_download:"\u0130ndir",nav_contact:"\u0130leti\u015Fim",nav_cta:"Ba\u015Fla",hero_badge:"\u{1F3AD} AI Destekli Tiyatro Provas\u0131",hero_title:"Senaryonuz.<br>Her ses.<br><em>Tek uygulama.</em>",hero_desc:"Bir tiyatro senaryosu y\u00FCkleyin ve AI t\u00FCm karakterleri ve diyaloglar\u0131 \u00E7\u0131kars\u0131n. Payla\u015F\u0131n, kay\u0131t yap\u0131n ve birlikte prova edin.",hero_cta:"\u25B6 RehearsAI \u00DCcretsiz",hero_how:"Nas\u0131l \u00E7al\u0131\u015F\u0131r",feat_label:"\u00D6zellikler",feat_title:"Tiyatro grubunuz i\u00E7in her \u015Fey",feat_desc:"Senaryodan sahneye \u2014 RehearsAI s\u0131k\u0131c\u0131 i\u015Fleri halleder.",f1t:"AI Senaryo \u00C7\u0131karma",f1d:"PDF, Word veya metin y\u00FCkleyin. AI t\u00FCm diyaloglar\u0131 otomatik \u00E7\u0131kar\u0131r.",f2t:"Tak\u0131m \u00C7al\u0131\u015Fmas\u0131",f2d:"Bir kodla payla\u015F\u0131n. Her akt\u00F6r rol\u00FCn\u00FC se\u00E7sin.",f3t:"Ses Kayd\u0131",f3d:"Repliklerinizi kaydedin ve bulut \u00FCzerinden payla\u015F\u0131n.",f4t:"Metinden Sese",f4d:"Her karaktere \u00F6zg\u00FCn AI sesleri atay\u0131n.",f5t:"Sahne Y\u00F6netimi",f5d:"Sahnelere g\u00F6re d\u00FCzenleyin. Herhangi bir sahneye atlay\u0131n.",f6t:"\u00C7oklu Dil",f6d:"\u0130ngilizce, Almanca, Frans\u0131zca, \u0130spanyolca, \u0130talyanca, T\u00FCrk\u00E7e ve Arap\u00E7a aray\u00FCz.",how_label:"Nas\u0131l \u00E7al\u0131\u015F\u0131r",how_title:"3 ad\u0131mda senaryodan provaya",how_desc:"Manuel kopyalama yok. Y\u00FCkle ve ba\u015Fla.",s1t:"Senaryonuzu y\u00FCkleyin",s1d:"PDF, Word veya metin dosyas\u0131 y\u00FCkleyin.",s2t:"Grubunuzla payla\u015F\u0131n",s2d:"Bir oda kodu al\u0131n ve payla\u015F\u0131n.",s3t:"Birlikte prova edin",s3d:"AI sesleri veya ger\u00E7ek kay\u0131tlarla prova yap\u0131n.",vid_label:"Uygulamada g\u00F6r\u00FCn",vid_title:"RehearsAI uygulamada",vid_desc:"Ne kadar kolay oldu\u011Funu g\u00F6r\u00FCn.",vid_soon:"E\u011Fitim videosu yak\u0131nda",pr_label:"Fiyatlar",pr_title:"Basit ve \u015Feffaf fiyatlar",pr_desc:"\u00DCcretsiz ba\u015Flay\u0131n.",pr_forever:"sonsuza dek",pr_month:"/ay",pr_popular:"En pop\u00FCler",pf1:"2 AI senaryo \u00E7\u0131karma",pf2:"Yerel prova ile TTS",pf3:"Ses kayd\u0131",pf4:"Sahne y\u00F6netimi",pf5:"Senaryo d\u0131\u015Fa aktarma",pf6:"Proje payla\u015Fma",pf7:"Bulut kay\u0131tlar\u0131",pf8:"S\u0131n\u0131rs\u0131z AI \u00E7\u0131karma",pp1:"S\u0131n\u0131rs\u0131z AI \u00E7\u0131karma",pp2:"Ekiple payla\u015Fma",pp3:"Bulut ses kay\u0131tlar\u0131",pp4:"Yerel prova ile TTS",pp5:"Sahne y\u00F6netimi",pp6:"Senaryo d\u0131\u015Fa aktarma",pp7:"API anahtar\u0131 gerekmez",pp8:"7 g\u00FCn \u00FCcretsiz deneme",pr_free_btn:"\u00DCcretsiz ba\u015Fla",pr_prem_btn:"\u00DCcretsiz dene",pr_yearly:"Ayr\u0131ca: \u20AC64,99/y\u0131l (%22 tasarruf)",te_label:"Akt\u00F6rler ne diyor",te_title:"Tiyatro gruplar\u0131 taraf\u0131ndan seviliyor",te_desc:"Prova s\u00FCrecini d\u00F6n\u00FC\u015Ft\u00FCren gruplara kat\u0131l\u0131n.",t1:"\"AI 3 perdelik oyunumuzu bir dakikada \u00E7\u0131kard\u0131.\"",t2:"\"Otob\u00FCste AI sesleriyle \u00E7al\u0131\u015F\u0131yorum.\"",t3:"\"Kay\u0131tlar\u0131 payla\u015Fmak her \u015Feyi de\u011Fi\u015Ftirdi.\"",t_soon:"Yak\u0131nda",t_first:"\u0130lk siz olun!",dl_label:"\u0130ndir",dl_title:"RehearsAI'yi edinin",dl_desc:"Android, iOS ve Windows'ta mevcut.",dl_and_sub:"Tam deneyim \u2014 prova, kay\u0131t ve i\u015Fbirli\u011Fi",dl_ios_sub:"Yak\u0131nda",dl_win_sub:"Senaryo d\u00FCzenleme ve proje y\u00F6netimi",ct_label:"Destek",ct_title:"\u0130leti\u015Fime ge\u00E7in",ct_desc:"Hata? \u00D6neri? Yard\u0131m?",ct_email_ph:"E-postan\u0131z",ct_bug:"Hata",ct_feature:"\u00D6neri",ct_question:"Soru",ct_other:"Di\u011Fer",ct_msg_ph:"Mesaj\u0131n\u0131z",ct_send:"G\u00F6nder",ft_desc:"AI destekli senaryo \u00E7\u0131karma ve i\u015Fbirlik\u00E7i prova.",ft_product:"\u00DCr\u00FCn",ft_legal:"Yasal",ft_privacy:"Gizlilik",ft_imprint:"K\u00FCnye",ft_delete:"Verileri sil",ft_made:"Tiyatro severler i\u00E7in \u{1F3AD} ile yap\u0131ld\u0131"},
+ar:{dl_and_search:'ابحث عن "RehearsAI" في Google Play',dl_ios_search:'ابحث عن "RehearsAI" في App Store',nav_features:"\u0627\u0644\u0645\u064A\u0632\u0627\u062A",nav_how:"\u0643\u064A\u0641 \u064A\u0639\u0645\u0644",nav_pricing:"\u0627\u0644\u0623\u0633\u0639\u0627\u0631",nav_download:"\u062A\u062D\u0645\u064A\u0644",nav_contact:"\u0627\u062A\u0635\u0644",nav_cta:"\u0627\u0628\u062F\u0623",hero_badge:"\u{1F3AD} \u062A\u0645\u0631\u064A\u0646 \u0645\u0633\u0631\u062D\u064A \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A",hero_title:"\u0646\u0635\u0643.<br>\u0643\u0644 \u0635\u0648\u062A.<br><em>\u062A\u0637\u0628\u064A\u0642 \u0648\u0627\u062D\u062F.</em>",hero_desc:"\u0627\u0631\u0641\u0639 \u0623\u064A \u0646\u0635 \u0645\u0633\u0631\u062D\u064A \u0648\u062F\u0639 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u064A\u0633\u062A\u062E\u0631\u062C \u0627\u0644\u0634\u062E\u0635\u064A\u0627\u062A \u0648\u0627\u0644\u062D\u0648\u0627\u0631\u0627\u062A. \u0634\u0627\u0631\u0643 \u0648\u0633\u062C\u0644 \u0648\u062A\u062F\u0631\u0628.",hero_cta:"\u25B6 RehearsAI \u0645\u062C\u0627\u0646\u064B\u0627",hero_how:"\u0643\u064A\u0641 \u064A\u0639\u0645\u0644",feat_label:"\u0627\u0644\u0645\u064A\u0632\u0627\u062A",feat_title:"\u0643\u0644 \u0645\u0627 \u064A\u062D\u062A\u0627\u062C\u0647 \u0641\u0631\u064A\u0642\u0643",feat_desc:"\u0645\u0646 \u0627\u0644\u0646\u0635 \u0625\u0644\u0649 \u0627\u0644\u0645\u0633\u0631\u062D \u2014 RehearsAI \u064A\u062A\u0648\u0644\u0649 \u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u0645\u0645\u0644.",f1t:"\u0627\u0633\u062A\u062E\u0631\u0627\u062C \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A",f1d:"\u0627\u0631\u0641\u0639 PDF \u0623\u0648 Word \u0623\u0648 \u0646\u0635. \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u064A\u0633\u062A\u062E\u0631\u062C \u0643\u0644 \u0627\u0644\u062D\u0648\u0627\u0631\u0627\u062A \u062A\u0644\u0642\u0627\u0626\u064A\u0627\u064B.",f2t:"\u0627\u0644\u0639\u0645\u0644 \u0627\u0644\u062C\u0645\u0627\u0639\u064A",f2d:"\u0634\u0627\u0631\u0643 \u0628\u0631\u0645\u0632. \u0643\u0644 \u0645\u0645\u062B\u0644 \u064A\u062E\u062A\u0627\u0631 \u062F\u0648\u0631\u0647.",f3t:"\u062A\u0633\u062C\u064A\u0644 \u0635\u0648\u062A\u064A",f3d:"\u0633\u062C\u0644 \u062D\u0648\u0627\u0631\u0627\u062A\u0643 \u0648\u0634\u0627\u0631\u0643\u0647\u0627 \u0639\u0628\u0631 \u0627\u0644\u0633\u062D\u0627\u0628\u0629.",f4t:"\u0646\u0637\u0642 \u0627\u0644\u0646\u0635",f4d:"\u0639\u064A\u0651\u0646 \u0623\u0635\u0648\u0627\u062A \u0630\u0643\u064A\u0629 \u0644\u0643\u0644 \u0634\u062E\u0635\u064A\u0629.",f5t:"\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0647\u062F",f5d:"\u0646\u0638\u0645 \u062D\u0633\u0628 \u0627\u0644\u0645\u0634\u0627\u0647\u062F. \u0627\u0646\u062A\u0642\u0644 \u0625\u0644\u0649 \u0623\u064A \u0645\u0634\u0647\u062F.",f6t:"\u0644\u063A\u0627\u062A \u0645\u062A\u0639\u062F\u062F\u0629",f6d:"\u0648\u0627\u062C\u0647\u0629 \u0628\u0627\u0644\u0625\u0646\u062C\u0644\u064A\u0632\u064A\u0629 \u0648\u0627\u0644\u0623\u0644\u0645\u0627\u0646\u064A\u0629 \u0648\u0627\u0644\u0641\u0631\u0646\u0633\u064A\u0629 \u0648\u0627\u0644\u0625\u0633\u0628\u0627\u0646\u064A\u0629 \u0648\u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A\u0629 \u0648\u0627\u0644\u062A\u0631\u0643\u064A\u0629 \u0648\u0627\u0644\u0639\u0631\u0628\u064A\u0629.",how_label:"\u0643\u064A\u0641 \u064A\u0639\u0645\u0644",how_title:"\u0645\u0646 \u0627\u0644\u0646\u0635 \u0625\u0644\u0649 \u0627\u0644\u062A\u062F\u0631\u064A\u0628 \u0641\u064A 3 \u062E\u0637\u0648\u0627\u062A",how_desc:"\u0628\u062F\u0648\u0646 \u0646\u0633\u062E. \u0641\u0642\u0637 \u0627\u0631\u0641\u0639 \u0648\u0627\u0628\u062F\u0623.",s1t:"\u0627\u0631\u0641\u0639 \u0646\u0635\u0643",s1d:"\u0627\u0631\u0641\u0639 \u0645\u0644\u0641 PDF \u0623\u0648 Word \u0623\u0648 \u0646\u0635.",s2t:"\u0634\u0627\u0631\u0643 \u0645\u0639 \u0641\u0631\u064A\u0642\u0643",s2d:"\u0627\u062D\u0635\u0644 \u0639\u0644\u0649 \u0631\u0645\u0632 \u0648\u0634\u0627\u0631\u0643\u0647.",s3t:"\u062A\u062F\u0631\u0628\u0648\u0627 \u0645\u0639\u0627\u064B",s3d:"\u062A\u062F\u0631\u0628 \u0628\u0623\u0635\u0648\u0627\u062A \u0630\u0643\u064A\u0629 \u0623\u0648 \u062A\u0633\u062C\u064A\u0644\u0627\u062A \u062D\u0642\u064A\u0642\u064A\u0629.",vid_label:"\u0634\u0627\u0647\u062F",vid_title:"RehearsAI \u0639\u0645\u0644\u064A\u0627\u064B",vid_desc:"\u0634\u0627\u0647\u062F \u0643\u0645 \u0647\u0648 \u0633\u0647\u0644.",vid_soon:"\u0641\u064A\u062F\u064A\u0648 \u0642\u0631\u064A\u0628\u0627\u064B",pr_label:"\u0627\u0644\u0623\u0633\u0639\u0627\u0631",pr_title:"\u0623\u0633\u0639\u0627\u0631 \u0628\u0633\u064A\u0637\u0629 \u0648\u0634\u0641\u0627\u0641\u0629",pr_desc:"\u0627\u0628\u062F\u0623 \u0645\u062C\u0627\u0646\u0627\u064B.",pr_forever:"\u0644\u0644\u0623\u0628\u062F",pr_month:"/\u0634\u0647\u0631",pr_popular:"\u0627\u0644\u0623\u0643\u062B\u0631 \u0634\u0639\u0628\u064A\u0629",pf1:"2 \u0627\u0633\u062A\u062E\u0631\u0627\u062C",pf2:"\u062A\u062F\u0631\u064A\u0628 \u0645\u062D\u0644\u064A \u0645\u0639 TTS",pf3:"\u062A\u0633\u062C\u064A\u0644 \u0635\u0648\u062A\u064A",pf4:"\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0647\u062F",pf5:"\u062A\u0635\u062F\u064A\u0631 \u0627\u0644\u0646\u0635",pf6:"\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639",pf7:"\u062A\u0633\u062C\u064A\u0644\u0627\u062A \u0633\u062D\u0627\u0628\u064A\u0629",pf8:"\u0627\u0633\u062A\u062E\u0631\u0627\u062C\u0627\u062A \u063A\u064A\u0631 \u0645\u062D\u062F\u0648\u062F\u0629",pp1:"\u0627\u0633\u062A\u062E\u0631\u0627\u062C\u0627\u062A \u063A\u064A\u0631 \u0645\u062D\u062F\u0648\u062F\u0629",pp2:"\u0645\u0634\u0627\u0631\u0643\u0629 \u0645\u0639 \u0627\u0644\u0641\u0631\u064A\u0642",pp3:"\u062A\u0633\u062C\u064A\u0644\u0627\u062A \u0633\u062D\u0627\u0628\u064A\u0629",pp4:"\u062A\u062F\u0631\u064A\u0628 \u0645\u062D\u0644\u064A \u0645\u0639 TTS",pp5:"\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0647\u062F",pp6:"\u062A\u0635\u062F\u064A\u0631 \u0627\u0644\u0646\u0635",pp7:"\u0628\u062F\u0648\u0646 \u0645\u0641\u062A\u0627\u062D API",pp8:"7 \u0623\u064A\u0627\u0645 \u0645\u062C\u0627\u0646\u064A\u0629",pr_free_btn:"\u0627\u0628\u062F\u0623 \u0645\u062C\u0627\u0646\u0627\u064B",pr_prem_btn:"\u062A\u062C\u0631\u0628\u0629 \u0645\u062C\u0627\u0646\u064A\u0629",pr_yearly:"\u0623\u064A\u0636\u0627\u064B: \u20AC64.99/\u0633\u0646\u0629 (22% \u062A\u0648\u0641\u064A\u0631)",te_label:"\u0645\u0627\u0630\u0627 \u064A\u0642\u0648\u0644\u0648\u0646",te_title:"\u0645\u062D\u0628\u0648\u0628 \u0645\u0646 \u0641\u0631\u0642 \u0627\u0644\u0645\u0633\u0631\u062D",te_desc:"\u0627\u0646\u0636\u0645 \u0625\u0644\u0649 \u0627\u0644\u0641\u0631\u0642 \u0627\u0644\u062A\u064A \u062D\u0648\u0644\u062A \u062A\u062F\u0631\u064A\u0628\u0627\u062A\u0647\u0627.",t1:"\"\u0627\u0633\u062A\u062E\u0631\u062C \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0645\u0633\u0631\u062D\u064A\u062A\u0646\u0627 \u0641\u064A \u0623\u0642\u0644 \u0645\u0646 \u062F\u0642\u064A\u0642\u0629.\"",t2:"\"\u0623\u062A\u062F\u0631\u0628 \u0641\u064A \u0627\u0644\u062D\u0627\u0641\u0644\u0629 \u0628\u0623\u0635\u0648\u0627\u062A \u0630\u0643\u064A\u0629. \u0643\u0623\u0646 \u0644\u062F\u064A \u0634\u0631\u064A\u0643 \u0641\u064A \u062C\u064A\u0628\u064A.\"",t3:"\"\u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u062A\u0633\u062C\u064A\u0644\u0627\u062A \u063A\u064A\u0631\u062A \u0643\u0644 \u0634\u064A\u0621.\"",t_soon:"\u0642\u0631\u064A\u0628\u0627\u064B",t_first:"\u0643\u0646 \u0623\u0648\u0644 \u0645\u0646 \u064A\u0634\u0627\u0631\u0643!",dl_label:"\u062A\u062D\u0645\u064A\u0644",dl_title:"\u0627\u062D\u0635\u0644 \u0639\u0644\u0649 RehearsAI",dl_desc:"\u0645\u062A\u0627\u062D \u0639\u0644\u0649 Android \u0648iOS \u0648Windows.",dl_and_sub:"\u062A\u062C\u0631\u0628\u0629 \u0643\u0627\u0645\u0644\u0629 \u2014 \u062A\u062F\u0631\u064A\u0628 \u0648\u062A\u0633\u062C\u064A\u0644 \u0648\u062A\u0639\u0627\u0648\u0646",dl_ios_sub:"\u0642\u0631\u064A\u0628\u0627\u064B \u0639\u0644\u0649",dl_win_sub:"\u062A\u062D\u0631\u064A\u0631 \u0627\u0644\u0646\u0635\u0648\u0635 \u0648\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639",ct_label:"\u0627\u0644\u062F\u0639\u0645",ct_title:"\u062A\u0648\u0627\u0635\u0644 \u0645\u0639\u0646\u0627",ct_desc:"\u062E\u0637\u0623\u061F \u0641\u0643\u0631\u0629\u061F \u0645\u0633\u0627\u0639\u062F\u0629\u061F",ct_email_ph:"\u0628\u0631\u064A\u062F\u0643",ct_bug:"\u062E\u0637\u0623",ct_feature:"\u0627\u0642\u062A\u0631\u0627\u062D",ct_question:"\u0633\u0624\u0627\u0644",ct_other:"\u0622\u062E\u0631",ct_msg_ph:"\u0631\u0633\u0627\u0644\u062A\u0643",ct_send:"\u0625\u0631\u0633\u0627\u0644",ft_desc:"\u0627\u0633\u062A\u062E\u0631\u0627\u062C \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0648\u062A\u062F\u0631\u064A\u0628 \u062C\u0645\u0627\u0639\u064A \u0644\u0641\u0631\u0642 \u0627\u0644\u0645\u0633\u0631\u062D.",ft_product:"\u0627\u0644\u0645\u0646\u062A\u062C",ft_legal:"\u0642\u0627\u0646\u0648\u0646\u064A",ft_privacy:"\u0627\u0644\u062E\u0635\u0648\u0635\u064A\u0629",ft_imprint:"\u0628\u064A\u0627\u0646\u0627\u062A",ft_delete:"\u062D\u0630\u0641 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A",ft_made:"\u0635\u0646\u0639 \u0628\u062D\u0628 \u{1F3AD} \u0644\u0645\u062D\u0628\u064A \u0627\u0644\u0645\u0633\u0631\u062D"}
+};
+
+function setLanguage(lang) {
+    const s = T[lang] || T.en;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const k = el.getAttribute('data-i18n');
+        if (s[k]) el.textContent = s[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const k = el.getAttribute('data-i18n-html');
+        if (s[k]) el.innerHTML = s[k];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const k = el.getAttribute('data-i18n-placeholder');
+        if (s[k]) el.placeholder = s[k];
+    });
+    document.documentElement.lang = lang;
+    document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.getElementById('langSwitcher').value = lang;
+    localStorage.setItem('rehearsai_lang', lang);
+}
+
+(function() {
+    var saved = localStorage.getItem('rehearsai_lang');
+    var browser = (navigator.language || '').slice(0,2);
+    var supported = ['en','de','fr','es','it','tr','ar'];
+    var lang = saved || (supported.indexOf(browser) !== -1 ? browser : 'en');
+    setLanguage(lang);
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            var t = document.querySelector(this.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+})();
 </script>
 
 </body>
