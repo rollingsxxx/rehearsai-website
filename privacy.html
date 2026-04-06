@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>RehearsAI Privacy Policy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RehearsAI — Privacy Policy</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #1A1A2E; color: #E8E4F0; }
-        h1 { color: #A855F7; }
-        h2 { color: #C084FC; margin-top: 24px; }
-        a { color: #A855F7; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; background: #0D0B1A; color: #E8E4F0; line-height: 1.7; }
+        h1 { color: #A855F7; font-size: 28px; margin-bottom: 4px; }
+        h2 { color: #C084FC; margin-top: 28px; font-size: 18px; }
+        p { margin: 8px 0; font-size: 15px; color: #c4bfd4; }
+        a { color: #A855F7; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid rgba(168,85,247,0.15); }
+        .top-bar a { font-size: 20px; font-weight: 700; }
+        .top-bar a span { color: #A855F7; }
+        .lang-toggle { display: flex; gap: 4px; background: #1C1835; border-radius: 8px; padding: 3px; }
+        .lang-btn { padding: 6px 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; background: transparent; color: #9B94AD; transition: all 0.2s; }
+        .lang-btn.active { background: #A855F7; color: white; }
+        .updated { font-size: 13px; color: #9B94AD; margin-bottom: 24px; }
+        .back-link { display: inline-block; margin-top: 32px; font-size: 13px; }
     </style>
 </head>
 <body>
-<h1>Privacy Policy — RehearsAI</h1>
-<p>Last updated: March 2026</p>
+
+<div class="top-bar">
+    <a href="index.html">Rehears<span>AI</span></a>
+    <div class="lang-toggle">
+        <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
+    </div>
+</div>
+
+<div id="content-en">
+<h1>Privacy Policy</h1>
+<p class="updated">Last updated: March 2026</p>
 
 <h2>1. Responsible Party</h2>
-<p>****<br>****<br>****<br>Email: support@rehearsaiapp.com</p>
+<p>See <a href="impressum.html">Impressum</a> for full contact information.<br>
+Contact: <a href="https://rehearsaiapp.com/#contact">Contact Form</a></p>
 
 <h2>2. Data We Collect</h2>
 <p>Voice recordings (stored locally and optionally uploaded to Firebase), display names, device identifiers, and script text sent to Google Gemini AI for analysis.</p>
@@ -35,13 +58,13 @@
 <p>You have the right to access, rectify, erase, restrict processing, data portability, and object to processing of your personal data. You can withdraw consent at any time.</p>
 
 <h2>8. Data Deletion</h2>
-<p>You can delete all your data anytime from Settings → Delete All My Data. This removes all local data and your data from our servers.</p>
+<p>You can delete all your data anytime from Settings &rarr; Delete All My Data. This removes all local data and your data from our servers. You can visit our <a href="delete.html">Data Deletion page</a>.</p>
 
 <h2>9. Automated Decision-Making</h2>
 <p>The app uses AI (Google Gemini) to extract dialogues from scripts. This is a text processing function and does not involve profiling or automated decisions affecting your rights.</p>
 
 <h2>10. Subscriptions</h2>
-<p>Subscriptions are managed through Google Play. You can cancel anytime in Google Play Store → Subscriptions. Access continues until the end of the current billing period. Refund requests are handled by Google.</p>
+<p>Subscriptions are managed through Google Play (Android) and the App Store (iOS). You can cancel anytime in your device's subscription settings. Access continues until the end of the current billing period. Refund requests are handled by Google or Apple respectively.</p>
 
 <h2>11. Device IDs</h2>
 <p>Device IDs of removed members may be retained to prevent unauthorized re-access to shared projects.</p>
@@ -50,9 +73,80 @@
 <p>We may update this policy. Changes take effect when published on this page.</p>
 
 <h2>13. Contact</h2>
-<p>For questions about your data: support@rehearsaiapp.com</p>
+<p>For questions about your data, please use our <a href="https://rehearsaiapp.com/#contact">Contact Form</a>.</p>
 
 <h2>14. Supervisory Authority</h2>
 <p>You have the right to lodge a complaint with a data protection supervisory authority.</p>
+
+<a href="index.html" class="back-link">&larr; Back to RehearsAI</a>
+</div>
+
+<div id="content-de" style="display:none;">
+<h1>Datenschutzerkl&auml;rung</h1>
+<p class="updated">Zuletzt aktualisiert: M&auml;rz 2026</p>
+
+<h2>1. Verantwortlicher</h2>
+<p>Siehe <a href="impressum.html">Impressum</a> f&uuml;r vollst&auml;ndige Kontaktdaten.<br>
+Kontakt: <a href="https://rehearsaiapp.com/#contact">Kontaktformular</a></p>
+
+<h2>2. Welche Daten wir erheben</h2>
+<p>Sprachaufnahmen (lokal gespeichert und optional auf Firebase hochgeladen), Anzeigenamen, Ger&auml;tekennungen und Skripttexte, die zur Analyse an Google Gemini AI gesendet werden.</p>
+
+<h2>3. Zweck der Verarbeitung</h2>
+<p>Skripttexte werden von Google Gemini AI verarbeitet, um Charakterdialoge zu extrahieren. Sprachaufnahmen werden lokal gespeichert und optional &uuml;ber Google Firebase mit Teammitgliedern geteilt. Anzeigenamen identifizieren Mitglieder in geteilten Projekten.</p>
+
+<h2>4. Rechtsgrundlage</h2>
+<p>Die Verarbeitung basiert auf Ihrer Einwilligung (DSGVO Art. 6(1)(a)), die Sie beim Akzeptieren des Einwilligungs-Popups beim ersten Start erteilen.</p>
+
+<h2>5. Daten&uuml;bermittlung in Drittl&auml;nder</h2>
+<p>Daten k&ouml;nnen an US-Server &uuml;bermittelt werden (Google Gemini API, Google Firebase). Diese &Uuml;bermittlungen sind durch Standardvertragsklauseln (SCCs) gem&auml;&szlig; DSGVO gesch&uuml;tzt.</p>
+
+<h2>6. Datenspeicherung</h2>
+<p>Lokale Daten: bis Sie sie l&ouml;schen. Firebase-Daten: bis der Projektinhaber sie l&ouml;scht. Gemini API: Eingaben werden 55 Tage zur Missbrauchskontrolle gespeichert, nicht f&uuml;r KI-Training verwendet.</p>
+
+<h2>7. Ihre Rechte</h2>
+<p>Sie haben das Recht auf Auskunft, Berichtigung, L&ouml;schung, Einschr&auml;nkung der Verarbeitung, Daten&uuml;bertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten. Sie k&ouml;nnen Ihre Einwilligung jederzeit widerrufen.</p>
+
+<h2>8. Datenl&ouml;schung</h2>
+<p>Sie k&ouml;nnen alle Ihre Daten jederzeit &uuml;ber Einstellungen &rarr; Alle meine Daten l&ouml;schen entfernen. Dies entfernt alle lokalen Daten und Ihre Daten von unseren Servern. Sie k&ouml;nnen unsere <a href="delete.html">Datenl&ouml;schungsseite</a> besuchen.</p>
+
+<h2>9. Automatisierte Entscheidungsfindung</h2>
+<p>Die App verwendet KI (Google Gemini) zur Extraktion von Dialogen aus Skripten. Dies ist eine Textverarbeitungsfunktion und beinhaltet kein Profiling oder automatisierte Entscheidungen, die Ihre Rechte betreffen.</p>
+
+<h2>10. Abonnements</h2>
+<p>Abonnements werden &uuml;ber Google Play (Android) und den App Store (iOS) verwaltet. Sie k&ouml;nnen jederzeit in den Abonnement-Einstellungen Ihres Ger&auml;ts k&uuml;ndigen. Der Zugang bleibt bis zum Ende des aktuellen Abrechnungszeitraums bestehen. Erstattungsanfragen werden von Google bzw. Apple bearbeitet.</p>
+
+<h2>11. Ger&auml;te-IDs</h2>
+<p>Ger&auml;te-IDs entfernter Mitglieder k&ouml;nnen gespeichert werden, um unbefugten erneuten Zugriff auf geteilte Projekte zu verhindern.</p>
+
+<h2>12. &Auml;nderungen</h2>
+<p>Wir k&ouml;nnen diese Richtlinie aktualisieren. &Auml;nderungen treten mit Ver&ouml;ffentlichung auf dieser Seite in Kraft.</p>
+
+<h2>13. Kontakt</h2>
+<p>Bei Fragen zu Ihren Daten nutzen Sie bitte unser <a href="https://rehearsaiapp.com/#contact">Kontaktformular</a>.</p>
+
+<h2>14. Aufsichtsbeh&ouml;rde</h2>
+<p>Sie haben das Recht, eine Beschwerde bei einer Datenschutzaufsichtsbeh&ouml;rde einzureichen.</p>
+
+<a href="index.html" class="back-link">&larr; Zur&uuml;ck zu RehearsAI</a>
+</div>
+
+<script>
+function setLang(lang) {
+    document.getElementById('content-en').style.display = lang === 'en' ? 'block' : 'none';
+    document.getElementById('content-de').style.display = lang === 'de' ? 'block' : 'none';
+    document.getElementById('btnEN').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+    document.getElementById('btnDE').className = 'lang-btn' + (lang === 'de' ? ' active' : '');
+    document.documentElement.lang = lang;
+    localStorage.setItem('rehearsai_legal_lang', lang);
+}
+(function() {
+    var saved = localStorage.getItem('rehearsai_legal_lang');
+    var browser = (navigator.language || '').slice(0,2);
+    var lang = saved || (browser === 'de' ? 'de' : 'en');
+    setLang(lang);
+})();
+</script>
+
 </body>
 </html>
