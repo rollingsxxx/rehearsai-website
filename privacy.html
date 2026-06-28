@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — RehearsAI</title>
+<title>Datenschutzerklärung / Privacy Policy — RehearsAI</title>
 <style>
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -16,112 +16,282 @@
     }
     h1 { font-size: 1.7rem; margin-bottom: 4px; }
     h2 { font-size: 1.15rem; margin-top: 28px; color: #7B1FA2; }
-    .updated { color: #666; font-size: 0.9rem; margin-bottom: 24px; }
+    .updated { color: #666; font-size: 0.9rem; margin-bottom: 16px; }
     a { color: #7B1FA2; }
+    .lang-toggle { display: flex; gap: 8px; margin-bottom: 24px; }
+    .lang-toggle button {
+        padding: 8px 18px;
+        border: 1px solid #7B1FA2;
+        background: #ffffff;
+        color: #7B1FA2;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+    .lang-toggle button.active { background: #7B1FA2; color: #ffffff; }
+    .prevail-note {
+        background: #f5f0fa;
+        border-left: 3px solid #7B1FA2;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin: 20px 0 28px;
+    }
+    .hidden { display: none; }
     @media (prefers-color-scheme: dark) {
         body { background: #14141f; color: #e8e8ee; }
         h2 { color: #B794F6; }
+        .lang-toggle button { background: #14141f; color: #B794F6; border-color: #B794F6; }
+        .lang-toggle button.active { background: #B794F6; color: #14141f; }
+        .prevail-note { background: #1f1f30; border-color: #B794F6; }
     }
 </style>
 </head>
 <body>
-<h1>Privacy Policy</h1>
-<div class="updated">Last updated: June 2026</div>
 
-<h2>1. Responsible Party</h2>
-<p>
-    See <a href="https://rehearsaiapp.com/impressum.html">Impressum</a> for full contact
-    information. Contact: <a href="https://rehearsaiapp.com/#contact">Contact Form</a>.
-</p>
+<div class="lang-toggle">
+    <button id="btn-de" class="active" onclick="showLang('de')">Deutsch</button>
+    <button id="btn-en" onclick="showLang('en')">English</button>
+</div>
 
-<h2>2. Data We Collect</h2>
-<p>
-    Voice recordings (stored locally on your device and, when you choose to share them,
-    uploaded to Google Firebase Cloud Storage), display names, device identifiers, and
-    script text sent to Google Cloud Vertex AI for analysis.
-</p>
+<!-- ════════════════ GERMAN (authoritative) ════════════════ -->
+<div id="lang-de">
+    <h1>Datenschutzerklärung</h1>
+    <div class="updated">Zuletzt aktualisiert: Juni 2026</div>
 
-<h2>3. Purpose of Processing</h2>
-<p>
-    Script text is processed by Google Cloud Vertex AI (Gemini model) to extract character
-    dialogues. Voice recordings are stored locally on your device and, when you choose to
-    share a project, uploaded to Google Firebase Cloud Storage so that members of your
-    project can access them. Display names identify members in shared projects.
-</p>
+    <div class="prevail-note">
+        Diese Datenschutzerklärung wird in deutscher und englischer Sprache bereitgestellt.
+        Im Falle von Widersprüchen ist die deutsche Fassung maßgeblich.
+    </div>
 
-<h2>4. Legal Basis</h2>
-<p>
-    Processing is based on your consent (GDPR Art. 6(1)(a)), given when you accept the
-    consent popup on first launch.
-</p>
+    <h2>1. Verantwortliche Stelle</h2>
+    <p>
+        Vollständige Kontaktinformationen finden Sie im
+        <a href="https://rehearsaiapp.com/impressum.html">Impressum</a>.
+        Kontakt: <a href="https://rehearsaiapp.com/#contact">Kontaktformular</a>.
+    </p>
 
-<h2>5. Data Transfer and Storage Location</h2>
-<p>
-    Your data is stored and processed on Google Cloud servers located in Europe
-    (europe-west1). Voice recordings are stored in Google Firebase Cloud Storage in the
-    europe-west1 region, and shared project data is stored in Google Firebase in the same
-    region. Script text is processed via Google Cloud Vertex AI in europe-west1. These
-    services are protected by Google's enterprise data processing agreements and
-    GDPR-compliant contracts.
-</p>
+    <h2>2. Welche Daten wir erheben</h2>
+    <p>
+        Sprachaufnahmen (lokal auf Ihrem Gerät gespeichert und, wenn Sie diese teilen,
+        zu Google Firebase Cloud Storage hochgeladen), Anzeigenamen, Gerätekennungen
+        sowie Skripttexte, die zur Analyse an Google Cloud Vertex AI gesendet werden.
+    </p>
 
-<h2>6. Data Retention</h2>
-<p>
-    Local data: until you delete it. Shared project data and uploaded recordings: until the
-    project owner deletes the project, or until you delete your own data. When data is
-    deleted, both the stored records and the associated recording files are removed from our
-    servers. Vertex AI: requests are not used for AI training and are not retained beyond
-    the immediate processing.
-</p>
+    <h2>3. Zweck der Verarbeitung</h2>
+    <p>
+        Skripttext wird von Google Cloud Vertex AI (Gemini-Modell) verarbeitet, um
+        Charakterdialoge zu extrahieren. Sprachaufnahmen werden lokal auf Ihrem Gerät
+        gespeichert und, wenn Sie ein Projekt teilen, zu Google Firebase Cloud Storage
+        hochgeladen, damit Mitglieder Ihres Projekts darauf zugreifen können. Anzeigenamen
+        identifizieren Mitglieder in geteilten Projekten.
+    </p>
 
-<h2>7. Your Rights</h2>
-<p>
-    You have the right to access, rectify, erase, restrict processing, data portability, and
-    object to processing of your personal data. You can withdraw consent at any time.
-</p>
+    <h2>4. Rechtsgrundlage</h2>
+    <p>
+        Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a
+        DSGVO), die Sie beim Akzeptieren des Einwilligungs-Hinweises beim ersten Start
+        erteilen.
+    </p>
 
-<h2>8. Data Deletion</h2>
-<p>
-    You can delete all your data anytime from Settings → Delete All My Data. This removes all
-    local data and your data from our servers, including any uploaded recordings. You can
-    also visit our <a href="https://rehearsaiapp.com/delete.html">Data Deletion page</a>.
-</p>
+    <h2>5. Datenübermittlung und Speicherort</h2>
+    <p>
+        Ihre Daten werden auf Google-Cloud-Servern in Europa (europe-west1) gespeichert und
+        verarbeitet. Sprachaufnahmen werden in Google Firebase Cloud Storage in der Region
+        europe-west1 gespeichert, und Daten geteilter Projekte werden in Google Firebase in
+        derselben Region gespeichert. Skripttext wird über Google Cloud Vertex AI in
+        europe-west1 verarbeitet. Diese Dienste sind durch die
+        Auftragsverarbeitungsverträge von Google und DSGVO-konforme Vereinbarungen
+        geschützt.
+    </p>
 
-<h2>9. Automated Decision-Making</h2>
-<p>
-    The app uses AI (Google Cloud Vertex AI) to extract dialogues from scripts. This is a
-    text processing function and does not involve profiling or automated decisions affecting
-    your rights.
-</p>
+    <h2>6. Speicherdauer</h2>
+    <p>
+        Lokale Daten: bis Sie diese löschen. Daten geteilter Projekte und hochgeladene
+        Aufnahmen: bis der Projektinhaber das Projekt löscht oder bis Sie Ihre eigenen
+        Daten löschen. Beim Löschen werden sowohl die gespeicherten Datensätze als auch die
+        zugehörigen Aufnahmedateien von unseren Servern entfernt. Vertex AI: Anfragen werden
+        nicht für das Training von KI verwendet und nicht über die unmittelbare Verarbeitung
+        hinaus gespeichert.
+    </p>
 
-<h2>10. Subscriptions</h2>
-<p>
-    Subscriptions are managed through Google Play (Android) and the App Store (iOS). You can
-    cancel anytime in your device's subscription settings. Access continues until the end of
-    the current billing period. Refund requests are handled by Google or Apple respectively.
-</p>
+    <h2>7. Ihre Rechte</h2>
+    <p>
+        Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
+        Verarbeitung, Datenübertragbarkeit sowie das Recht, der Verarbeitung Ihrer
+        personenbezogenen Daten zu widersprechen. Sie können Ihre Einwilligung jederzeit
+        widerrufen.
+    </p>
 
-<h2>11. Device IDs</h2>
-<p>
-    Device IDs of removed members may be retained to prevent unauthorized re-access to shared
-    projects.
-</p>
+    <h2>8. Datenlöschung</h2>
+    <p>
+        Sie können Ihre Daten jederzeit unter Einstellungen → Alle meine Daten löschen
+        entfernen. Dadurch werden alle lokalen Daten sowie Ihre Daten auf unseren Servern
+        einschließlich hochgeladener Aufnahmen gelöscht. Sie können auch unsere
+        <a href="https://rehearsaiapp.com/delete.html">Seite zur Datenlöschung</a> besuchen.
+    </p>
 
-<h2>12. Changes</h2>
-<p>
-    We may update this policy. Changes take effect when published on this page.
-</p>
+    <h2>9. Automatisierte Entscheidungsfindung</h2>
+    <p>
+        Die App verwendet KI (Google Cloud Vertex AI), um Dialoge aus Skripten zu
+        extrahieren. Dies ist eine Textverarbeitungsfunktion und umfasst kein Profiling oder
+        automatisierte Entscheidungen, die Ihre Rechte beeinträchtigen.
+    </p>
 
-<h2>13. Contact</h2>
-<p>
-    For questions about your data, please use our
-    <a href="https://rehearsaiapp.com/#contact">Contact Form</a>.
-</p>
+    <h2>10. Abonnements</h2>
+    <p>
+        Abonnements werden über Google Play (Android) und den App Store (iOS) verwaltet. Sie
+        können jederzeit in den Abonnement-Einstellungen Ihres Geräts kündigen. Der Zugriff
+        bleibt bis zum Ende des aktuellen Abrechnungszeitraums bestehen.
+        Erstattungsanfragen werden von Google bzw. Apple bearbeitet.
+    </p>
 
-<h2>14. Supervisory Authority</h2>
-<p>
-    You have the right to lodge a complaint with a data protection supervisory authority.
-</p>
+    <h2>11. Gerätekennungen</h2>
+    <p>
+        Gerätekennungen entfernter Mitglieder können gespeichert werden, um einen
+        unbefugten erneuten Zugriff auf geteilte Projekte zu verhindern.
+    </p>
+
+    <h2>12. Änderungen</h2>
+    <p>
+        Wir können diese Erklärung aktualisieren. Änderungen treten mit Veröffentlichung auf
+        dieser Seite in Kraft.
+    </p>
+
+    <h2>13. Kontakt</h2>
+    <p>
+        Bei Fragen zu Ihren Daten nutzen Sie bitte unser
+        <a href="https://rehearsaiapp.com/#contact">Kontaktformular</a>.
+    </p>
+
+    <h2>14. Aufsichtsbehörde</h2>
+    <p>
+        Sie haben das Recht, eine Beschwerde bei einer Datenschutz-Aufsichtsbehörde
+        einzureichen.
+    </p>
+</div>
+
+<!-- ════════════════ ENGLISH ════════════════ -->
+<div id="lang-en" class="hidden">
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated: June 2026</div>
+
+    <div class="prevail-note">
+        This Privacy Policy is provided in German and English. In case of any discrepancy,
+        the German version prevails.
+    </div>
+
+    <h2>1. Responsible Party</h2>
+    <p>
+        See <a href="https://rehearsaiapp.com/impressum.html">Impressum</a> for full contact
+        information. Contact: <a href="https://rehearsaiapp.com/#contact">Contact Form</a>.
+    </p>
+
+    <h2>2. Data We Collect</h2>
+    <p>
+        Voice recordings (stored locally on your device and, when you choose to share them,
+        uploaded to Google Firebase Cloud Storage), display names, device identifiers, and
+        script text sent to Google Cloud Vertex AI for analysis.
+    </p>
+
+    <h2>3. Purpose of Processing</h2>
+    <p>
+        Script text is processed by Google Cloud Vertex AI (Gemini model) to extract
+        character dialogues. Voice recordings are stored locally on your device and, when you
+        choose to share a project, uploaded to Google Firebase Cloud Storage so that members
+        of your project can access them. Display names identify members in shared projects.
+    </p>
+
+    <h2>4. Legal Basis</h2>
+    <p>
+        Processing is based on your consent (GDPR Art. 6(1)(a)), given when you accept the
+        consent popup on first launch.
+    </p>
+
+    <h2>5. Data Transfer and Storage Location</h2>
+    <p>
+        Your data is stored and processed on Google Cloud servers located in Europe
+        (europe-west1). Voice recordings are stored in Google Firebase Cloud Storage in the
+        europe-west1 region, and shared project data is stored in Google Firebase in the same
+        region. Script text is processed via Google Cloud Vertex AI in europe-west1. These
+        services are protected by Google's enterprise data processing agreements and
+        GDPR-compliant contracts.
+    </p>
+
+    <h2>6. Data Retention</h2>
+    <p>
+        Local data: until you delete it. Shared project data and uploaded recordings: until
+        the project owner deletes the project, or until you delete your own data. When data
+        is deleted, both the stored records and the associated recording files are removed
+        from our servers. Vertex AI: requests are not used for AI training and are not
+        retained beyond the immediate processing.
+    </p>
+
+    <h2>7. Your Rights</h2>
+    <p>
+        You have the right to access, rectify, erase, restrict processing, data portability,
+        and object to processing of your personal data. You can withdraw consent at any time.
+    </p>
+
+    <h2>8. Data Deletion</h2>
+    <p>
+        You can delete all your data anytime from Settings → Delete All My Data. This removes
+        all local data and your data from our servers, including any uploaded recordings. You
+        can also visit our <a href="https://rehearsaiapp.com/delete.html">Data Deletion
+        page</a>.
+    </p>
+
+    <h2>9. Automated Decision-Making</h2>
+    <p>
+        The app uses AI (Google Cloud Vertex AI) to extract dialogues from scripts. This is a
+        text processing function and does not involve profiling or automated decisions
+        affecting your rights.
+    </p>
+
+    <h2>10. Subscriptions</h2>
+    <p>
+        Subscriptions are managed through Google Play (Android) and the App Store (iOS). You
+        can cancel anytime in your device's subscription settings. Access continues until the
+        end of the current billing period. Refund requests are handled by Google or Apple
+        respectively.
+    </p>
+
+    <h2>11. Device IDs</h2>
+    <p>
+        Device IDs of removed members may be retained to prevent unauthorized re-access to
+        shared projects.
+    </p>
+
+    <h2>12. Changes</h2>
+    <p>
+        We may update this policy. Changes take effect when published on this page.
+    </p>
+
+    <h2>13. Contact</h2>
+    <p>
+        For questions about your data, please use our
+        <a href="https://rehearsaiapp.com/#contact">Contact Form</a>.
+    </p>
+
+    <h2>14. Supervisory Authority</h2>
+    <p>
+        You have the right to lodge a complaint with a data protection supervisory authority.
+    </p>
+</div>
+
+<script>
+    function showLang(lang) {
+        document.getElementById('lang-de').classList.toggle('hidden', lang !== 'de');
+        document.getElementById('lang-en').classList.toggle('hidden', lang !== 'en');
+        document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.documentElement.lang = lang;
+    }
+    (function() {
+        var pref = (navigator.language || 'de').toLowerCase();
+        if (!pref.startsWith('de')) showLang('en');
+    })();
+</script>
 
 </body>
 </html>
