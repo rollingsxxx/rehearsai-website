@@ -123,6 +123,26 @@
             background: var(--accent); color: white; font-size: 16px; font-weight: 600; cursor: pointer;
             transition: transform 0.2s, box-shadow 0.3s;
         }
+		.video-grid {
+		    display: grid;
+		    grid-template-columns: 1fr 1fr;
+		    gap: 24px;
+		    max-width: 1000px;
+		    margin: 0 auto;
+		}
+		.video-item video {
+		    width: 100%;
+		    border-radius: 8px;
+		    display: block;
+		}
+		.video-caption {
+		    text-align: center;
+		    margin-top: 8px;
+		    font-weight: 600;
+		}
+		@media (max-width: 700px) {
+		    .video-grid { grid-template-columns: 1fr; }
+		}
         .contact-form button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
         footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 24px 40px; }
         .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
@@ -259,7 +279,20 @@
     <div class="section-label reveal" data-i18n="vid_label">See it in action</div>
     <h2 class="section-title reveal" style="text-align:center;" data-i18n="vid_title">Watch RehearsAI in action</h2>
     <p class="section-desc reveal" style="text-align:center; margin: 0 auto 40px;" data-i18n="vid_desc">See how easy it is to go from script to rehearsal.</p>
-    <div class="video-placeholder reveal">&#127916;<p data-i18n="vid_soon">Tutorial video coming soon</p></div>
+    <div class="video-grid reveal">
+        <div class="video-item">
+            <video controls preload="metadata" poster="assets/video/android-poster.jpg">
+                <source src="assets/video/android.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption" data-i18n="vid_android">Android</p>
+        </div>
+        <div class="video-item">
+            <video controls preload="metadata" poster="assets/video/windows-poster.jpg">
+                <source src="assets/video/windows.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption" data-i18n="vid_windows">Windows</p>
+        </div>
+    </div>
 </section>
 
 <section id="pricing">
