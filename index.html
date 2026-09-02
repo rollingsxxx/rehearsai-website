@@ -143,6 +143,33 @@
 		@media (max-width: 700px) {
 		    .video-grid { grid-template-columns: 1fr; }
 		}
+		
+		/* new — add below your existing rules */
+		.video-order-note {
+		    text-align: center;
+		    margin: -20px auto 30px;
+		    font-size: 0.9em;
+		    opacity: 0.75;
+		}
+		.video-item {
+		    position: relative;
+		}
+		.video-step {
+		    position: absolute;
+		    top: -10px;
+		    left: -10px;
+		    width: 28px;
+		    height: 28px;
+		    border-radius: 50%;
+		    background: #000;
+		    color: #fff;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    font-weight: 700;
+		    font-size: 0.85em;
+		    z-index: 2;
+		}
         .contact-form button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
         footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 24px 40px; }
         .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
@@ -278,20 +305,23 @@
     <div class="section-label reveal" data-i18n="vid_label">See it in action</div>
     <h2 class="section-title reveal" style="text-align:center;" data-i18n="vid_title">Watch RehearsAI in action</h2>
     <p class="section-desc reveal" style="text-align:center; margin: 0 auto 40px;" data-i18n="vid_desc">See how easy it is to go from script to rehearsal.</p>
-    <div class="video-grid reveal">
-        <div class="video-item">
-            <video controls preload="metadata" poster="assets/video/windows-poster.jpg">
-                <source src="assets/video/Windows.mp4" type="video/mp4">
-            </video>
-            <p class="video-caption" data-i18n="vid_windows">Windows</p>
-        </div>
-		<div class="video-item">
-            <video controls preload="metadata" poster="assets/video/android-poster.jpg">
-                <source src="assets/video/Android.mp4" type="video/mp4">
-            </video>
-            <p class="video-caption" data-i18n="vid_android">Android</p>
-        </div>
-    </div>
+	<p class="video-order-note reveal" data-i18n="vid_order_note">Watch the Windows tutorial first, then the Android one.</p>
+	<div class="video-grid reveal">
+	    <div class="video-item">
+	        <span class="video-step">1</span>
+	        <video controls preload="metadata" poster="assets/video/windows-poster.jpg">
+	            <source src="assets/video/Windows.mp4" type="video/mp4">
+	        </video>
+	        <p class="video-caption" data-i18n="vid_windows">Windows</p>
+	    </div>
+	    <div class="video-item">
+	        <span class="video-step">2</span>
+	        <video controls preload="metadata" poster="assets/video/android-poster.jpg">
+	            <source src="assets/video/Android.mp4" type="video/mp4">
+	        </video>
+	        <p class="video-caption" data-i18n="vid_android">Android</p>
+	    </div>
+	</div>
 </section>
 
 <section id="pricing">
