@@ -1,0 +1,316 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.120
+Benvenuto su RehearsAI! Se sei un regista teatrale,
+
+00:00:03.120 --> 00:00:07.280
+un coach di recitazione, un filmmaker, o chiunque
+lavori con script basati su dialoghi,
+
+00:00:07.280 --> 00:00:13.400
+RehearsAI può semplificare enormemente il modo in cui
+prepari, organizzi e gestisci i tuoi progetti.
+
+00:00:14.040 --> 00:00:19.480
+In questo video esploreremo la versione Windows
+di RehearsAI e impareremo a creare un progetto,
+
+00:00:19.480 --> 00:00:24.680
+organizzare i personaggi, modificare gli script, gestire
+le scene e preparare tutto prima di condividere
+
+00:00:24.680 --> 00:00:28.560
+il tuo progetto con il tuo cast.
+Iniziamo.
+
+00:00:28.560 --> 00:00:32.840
+Prima di usare RehearsAI,
+dovrai creare un account.
+
+00:00:32.840 --> 00:00:35.880
+Quando apri l'applicazione per la prima volta,
+vedrai la schermata di benvenuto
+
+00:00:35.880 --> 00:00:37.640
+di RehearsAI.
+Qui dovrai
+
+00:00:37.640 --> 00:00:40.560
+inserire il tuo indirizzo email
+e creare una password.
+
+00:00:40.560 --> 00:00:43.520
+Assicurati di usare un indirizzo email reale
+a cui hai accesso,
+
+00:00:43.520 --> 00:00:47.960
+perché ti servirà nel caso dovessi
+reimpostare la password e recuperare l'accesso ai tuoi
+
+00:00:47.960 --> 00:00:52.000
+progetti. Una volta inseriti i tuoi dati, clicca su Registrati.
+
+00:00:52.000 --> 00:00:54.960
+Il tuo account verrà quindi creato,
+e potrai iniziare
+
+00:00:54.960 --> 00:00:58.320
+a usare RehearsAI e salvare
+i tuoi progetti nel tuo account.
+
+00:00:58.320 --> 00:01:01.600
+Dopo la registrazione, accederai all'area
+di lavoro principale
+
+00:01:01.600 --> 00:01:07.920
+di RehearsAI. Prima di creare il tuo primo progetto,
+diamo una rapida occhiata alla pagina Impostazioni.
+
+00:01:07.920 --> 00:01:10.800
+RehearsAI supporta attualmente diverse lingue,
+
+00:01:10.800 --> 00:01:15.560
+permettendo agli utenti di diversi paesi
+di lavorare comodamente nella lingua preferita.
+
+00:01:15.560 --> 00:01:19.240
+Puoi cambiare facilmente la lingua
+dell'applicazione da questo menu.
+
+00:01:21.240 --> 00:01:24.640
+Troverai anche le informazioni del tuo account
+e consigli utili per l'uso,
+
+00:01:24.640 --> 00:01:30.920
+inclusa la tua quota mensile di caratteri IA.
+La versione gratuita consente un'estrazione IA di
+
+00:01:30.920 --> 00:01:35.920
+fino a 200.000 caratteri, perfetta
+per testare l'applicazione.
+
+00:01:35.920 --> 00:01:39.920
+Gli utenti Premium possono elaborare fino a
+due milioni di caratteri ogni mese.
+
+00:01:41.400 --> 00:01:43.800
+Se dovessi riscontrare un problema,
+
+00:01:43.800 --> 00:01:48.760
+puoi contattare rapidamente l'assistenza o inviare
+una segnalazione di bug direttamente dall'applicazione.
+
+00:01:50.240 --> 00:01:55.480
+Per privacy e trasparenza, RehearsAI
+include anche l'opzione Elimina tutti i miei dati,
+
+00:01:55.480 --> 00:02:00.440
+che ti permette di rimuovere permanentemente tutte le tue
+informazioni dal server quando lo desideri.
+
+00:02:00.440 --> 00:02:05.560
+Ora creiamo il nostro primo progetto.
+Clicca su Nuovo progetto, inserisci un nome per il progetto,
+
+00:02:05.560 --> 00:02:08.520
+e premi Crea.
+Ci sono due modi per iniziare.
+
+00:02:08.520 --> 00:02:11.200
+Puoi incollare uno script
+oppure caricare un file di script.
+
+00:02:11.200 --> 00:02:16.760
+Se sei nuovo su RehearsAI, ti consigliamo di iniziare
+caricando un file di script. È il modo più semplice
+
+00:02:16.760 --> 00:02:21.720
+per importare uno script teatrale esistente e
+familiarizzare con il funzionamento dell'applicazione.
+
+00:02:21.720 --> 00:02:21.861
+Vedremo l'opzione Incolla script
+più avanti in questo tutorial,
+
+00:02:21.861 --> 00:02:24.760
+incluso come funziona e quando usarla.
+Per questa dimostrazione, caricheremo uno script.
+
+00:02:26.240 --> 00:02:32.520
+RehearsAI usa l'IA per analizzare il tuo script e
+separare automaticamente il dialogo di ogni personaggio.
+
+00:02:32.520 --> 00:02:35.200
+Dopo aver selezionato il file,
+inserisci semplicemente i
+
+00:02:35.200 --> 00:02:36.854
+nomi dei personaggi presenti nello script.
+Una volta pronto tutto,
+
+00:02:36.854 --> 00:02:40.080
+clicca su Avvia estrazione IA.
+In pochi secondi, l'IA analizza il documento e
+
+00:02:40.080 --> 00:02:46.280
+separa automaticamente il dialogo di ogni personaggio.
+Anche script di oltre cento pagine
+
+00:02:46.280 --> 00:02:51.240
+possono solitamente essere elaborati in meno di un minuto,
+risparmiando un'enorme quantità di lavoro manuale.
+
+00:02:52.680 --> 00:02:58.200
+Una volta completata l'elaborazione, vedrai subito
+ogni personaggio e tutto il suo dialogo.
+
+00:02:58.200 --> 00:03:01.720
+L'IA è molto precisa, ma si consiglia sempre
+di controllare
+
+00:03:01.720 --> 00:03:05.800
+i risultati prima dell'inizio delle prove.
+Uno dei maggiori vantaggi della
+
+00:03:05.800 --> 00:03:11.240
+versione Windows è la funzione Visualizza script completo.
+A differenza delle versioni mobili, Windows ti consente
+
+00:03:11.240 --> 00:03:15.480
+di visualizzare lo script originale completo
+accanto al dialogo estratto.
+
+00:03:15.480 --> 00:03:19.360
+Questo rende la revisione, la correzione
+e la modifica incredibilmente veloci.
+
+00:03:20.760 --> 00:03:25.120
+Se noti che una battuta appartiene a un altro
+personaggio, o che un dialogo non è stato estratto
+
+00:03:25.120 --> 00:03:29.680
+correttamente, modificalo semplicemente in modo diretto.
+Tutto si aggiorna istantaneamente.
+
+00:03:30.920 --> 00:03:34.720
+RehearsAI ti offre anche
+il controllo completo sul tuo cast.
+
+00:03:34.720 --> 00:03:36.320
+Puoi rinominare i personaggi,
+
+00:03:36.320 --> 00:03:40.280
+unire più personaggi in uno solo,
+aggiungere personaggi completamente nuovi,
+
+00:03:40.280 --> 00:03:45.680
+o rimuovere quelli non più necessari. Puoi persino
+inserire nuovo dialogo in qualsiasi posizione
+
+00:03:45.680 --> 00:03:49.440
+all'interno dello script o aggiungerlo alla fine
+delle battute di un personaggio.
+
+00:03:49.440 --> 00:03:54.360
+Questo rende la versione Windows un ambiente di modifica
+ideale prima dell'inizio delle prove.
+
+00:03:56.160 --> 00:04:00.600
+Gli script lunghi possono diventare difficili da consultare.
+Per questo RehearsAI include una potente
+
+00:04:00.600 --> 00:04:03.040
+funzione di ricerca.
+Basta digitare una parola,
+
+00:04:03.040 --> 00:04:08.840
+una frase o il nome di un personaggio, e saltare
+immediatamente a ogni corrispondenza nello script.
+
+00:04:10.440 --> 00:04:13.440
+Un'altra funzione estremamente utile
+è la gestione delle scene.
+
+00:04:13.440 --> 00:04:17.080
+Invece di scorrere centinaia
+di battute, puoi suddividere
+
+00:04:17.080 --> 00:04:21.480
+lo script in scene singole.
+Ogni scena può essere rinominata, riordinata,
+
+00:04:21.480 --> 00:04:26.720
+aggiornata o eliminata quando necessario.
+Questo rende le prove molto più organizzate,
+
+00:04:26.720 --> 00:04:30.000
+permettendo agli attori di esercitarsi
+solo sulle scene di cui hanno bisogno.
+
+00:04:30.000 --> 00:04:33.520
+Una volta che il progetto è completamente modificato,
+è il momento di condividerlo.
+
+00:04:34.480 --> 00:04:38.560
+Clicca su Condividi progetto.
+RehearsAI carica il tuo progetto in modo sicuro
+
+00:04:38.560 --> 00:04:43.480
+sul server e genera un codice progetto unico.
+Invia semplicemente questo codice ai tuoi attori.
+
+00:04:43.480 --> 00:04:47.720
+Dall'applicazione Android o iPhone, possono
+unirsi alla prova inserendo
+
+00:04:47.720 --> 00:04:54.760
+il codice e selezionando i personaggi assegnati.
+Come proprietario del progetto, mantieni il controllo totale.
+
+00:04:54.760 --> 00:05:01.560
+Puoi bloccare o sbloccare il progetto in qualsiasi momento,
+rimuovere partecipanti o bloccare utenti se necessario.
+
+00:05:01.560 --> 00:05:06.920
+Qualsiasi modifica apportata nell'applicazione Windows può
+anche essere sincronizzata con il progetto condiviso.
+
+00:05:08.360 --> 00:05:13.360
+Infine, RehearsAI ti consente di esportare il tuo lavoro.
+Puoi esportare lo script completo,
+
+00:05:13.360 --> 00:05:16.520
+oppure generare script contenenti
+solo i personaggi selezionati.
+
+00:05:16.520 --> 00:05:21.720
+Perfetto per stampare copie per le prove o
+condividere dialoghi personalizzati con ogni attore.
+
+00:05:21.720 --> 00:05:26.440
+RehearsAI per Windows è progettato per essere il tuo
+spazio di lavoro completo per la gestione dei progetti.
+
+00:05:26.440 --> 00:05:30.840
+Dall'estrazione dei dialoghi tramite IA
+alla modifica avanzata,
+
+00:05:30.840 --> 00:05:33.120
+dall'organizzazione delle scene
+alla condivisione dei progetti,
+
+00:05:33.120 --> 00:05:36.240
+fino all'esportazione degli script, tutto è pensato
+per farti risparmiare tempo
+
+00:05:36.240 --> 00:05:39.200
+e rendere le prove più efficienti.
+Grazie per aver guardato.
+
+00:05:39.200 --> 00:05:43.840
+Nel prossimo video, esploreremo le versioni Android
+e iPhone e vedremo come gli attori possono provare
+
+00:05:43.840 --> 00:05:47.520
+le proprie parti ovunque e in qualsiasi momento.
+Ci vediamo nel prossimo tutorial.

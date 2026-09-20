@@ -1,0 +1,316 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.120
+RehearsAI'ya hoş geldiniz! Bir tiyatro yönetmeniyseniz,
+
+00:00:03.120 --> 00:00:07.280
+oyunculuk koçuysanız, yapımcıysanız veya diyalog
+tabanlı senaryolarla çalışan biriyseniz,
+
+00:00:07.280 --> 00:00:13.400
+RehearsAI, projelerinizi hazırlama, organize etme ve
+yönetme şeklinizi ciddi şekilde kolaylaştırabilir.
+
+00:00:14.040 --> 00:00:19.480
+Bu videoda RehearsAI'nın Windows sürümünü inceleyecek
+ve nasıl proje oluşturulacağını,
+
+00:00:19.480 --> 00:00:24.680
+karakterlerin nasıl düzenleneceğini, senaryoların nasıl
+düzenleneceğini, sahnelerin nasıl yönetileceğini öğrenip
+
+00:00:24.680 --> 00:00:28.560
+projenizi ekibinizle paylaşmadan önce
+her şeyi hazırlayacağız. Hadi başlayalım.
+
+00:00:28.560 --> 00:00:32.840
+RehearsAI'yı kullanmadan önce
+bir hesap oluşturmanız gerekir.
+
+00:00:32.840 --> 00:00:35.880
+Uygulamayı ilk kez açtığınızda,
+RehearsAI hoş geldiniz
+
+00:00:35.880 --> 00:00:37.640
+ekranını göreceksiniz.
+Burada
+
+00:00:37.640 --> 00:00:40.560
+e-posta adresinizi girip
+bir şifre oluşturmalısınız.
+
+00:00:40.560 --> 00:00:43.520
+Erişebildiğiniz gerçek bir e-posta adresi
+kullandığınızdan emin olun,
+
+00:00:43.520 --> 00:00:47.960
+çünkü şifrenizi sıfırlamanız ve projelerinize
+tekrar erişmeniz gerektiğinde
+
+00:00:47.960 --> 00:00:52.000
+buna ihtiyacınız olacak. Bilgilerinizi girdikten sonra Kaydol'a tıklayın.
+
+00:00:52.000 --> 00:00:54.960
+Hesabınız oluşturulacak
+ve RehearsAI'yı kullanmaya
+
+00:00:54.960 --> 00:00:58.320
+ve projelerinizi hesabınıza
+kaydetmeye başlayabileceksiniz.
+
+00:00:58.320 --> 00:01:01.600
+Kayıt olduktan sonra RehearsAI'nın
+ana çalışma alanına
+
+00:01:01.600 --> 00:01:07.920
+yönlendirilirsiniz. İlk projenizi oluşturmadan önce,
+Ayarlar sayfasına hızlıca göz atalım.
+
+00:01:07.920 --> 00:01:10.800
+RehearsAI şu anda birden fazla dili desteklemektedir,
+
+00:01:10.800 --> 00:01:15.560
+böylece farklı ülkelerden kullanıcılar tercih ettikleri
+dilde rahatça çalışabilir.
+
+00:01:15.560 --> 00:01:19.240
+Uygulama dilini bu menüden
+kolayca değiştirebilirsiniz.
+
+00:01:21.240 --> 00:01:24.640
+Ayrıca burada hesap bilgilerinizi ve faydalı
+kullanım ipuçlarını bulabilirsiniz,
+
+00:01:24.640 --> 00:01:30.920
+aylık yapay zeka karakter kotanız da dahil.
+Ücretsiz sürüm, tek seferde
+
+00:01:30.920 --> 00:01:35.920
+200.000 karaktere kadar yapay zeka çıkarımına izin verir
+ve uygulamayı test etmek için idealdir.
+
+00:01:35.920 --> 00:01:39.920
+Premium kullanıcılar her ay
+iki milyon karaktere kadar işleyebilir.
+
+00:01:41.400 --> 00:01:43.800
+Herhangi bir sorunla karşılaşırsanız,
+
+00:01:43.800 --> 00:01:48.760
+destek ekibiyle hızlıca iletişime geçebilir veya doğrudan
+uygulama içinden bir hata raporu gönderebilirsiniz.
+
+00:01:50.240 --> 00:01:55.480
+Gizlilik ve şeffaflık için RehearsAI ayrıca
+Tüm Verilerimi Sil seçeneği de sunar,
+
+00:01:55.480 --> 00:02:00.440
+böylece dilediğiniz zaman tüm bilgilerinizi
+sunucudan kalıcı olarak kaldırabilirsiniz.
+
+00:02:00.440 --> 00:02:05.560
+Şimdi ilk projemizi oluşturalım.
+Yeni Proje'ye tıklayın, bir proje adı girin
+
+00:02:05.560 --> 00:02:08.520
+ve Oluştur'a basın.
+Başlamanın iki yolu vardır.
+
+00:02:08.520 --> 00:02:11.200
+Bir Senaryo Yapıştırabilir
+veya Senaryo Dosyası Yükleyebilirsiniz.
+
+00:02:11.200 --> 00:02:16.760
+RehearsAI'da yeniyseniz, Senaryo Dosyası Yükleme ile
+başlamanızı öneririz. Mevcut bir tiyatro senaryosunu
+
+00:02:16.760 --> 00:02:21.720
+içe aktarmanın ve uygulamanın nasıl çalıştığına
+aşina olmanın en kolay yoludur.
+
+00:02:21.720 --> 00:02:21.861
+Senaryo Yapıştır seçeneğini bu eğitimde
+daha sonra ele alacağız,
+
+00:02:21.861 --> 00:02:24.760
+nasıl çalıştığı ve ne zaman kullanılacağı dahil.
+Bu gösterim için bir senaryo yükleyeceğiz.
+
+00:02:26.240 --> 00:02:32.520
+RehearsAI, senaryonuzu analiz etmek ve her karakterin
+diyaloğunu otomatik olarak ayırmak için yapay zeka kullanır.
+
+00:02:32.520 --> 00:02:35.200
+Dosyayı seçtikten sonra,
+senaryoda bulunan karakter
+
+00:02:35.200 --> 00:02:36.854
+isimlerini girmeniz yeterlidir.
+Her şey hazır olduğunda,
+
+00:02:36.854 --> 00:02:40.080
+Yapay Zeka Çıkarımını Başlat'a tıklayın.
+Saniyeler içinde yapay zeka belgeyi analiz eder ve
+
+00:02:40.080 --> 00:02:46.280
+her karakterin diyaloğunu otomatik olarak ayırır.
+Yüz sayfadan fazla senaryolar bile
+
+00:02:46.280 --> 00:02:51.240
+genellikle bir dakikadan kısa sürede işlenebilir,
+bu da çok büyük bir manuel iş yükünü ortadan kaldırır.
+
+00:02:52.680 --> 00:02:58.200
+İşlem tamamlandığında, her karakteri ve tüm
+diyaloğunu anında görürsünüz.
+
+00:02:58.200 --> 00:03:01.720
+Yapay zeka son derece doğrudur, ancak provalar
+başlamadan önce
+
+00:03:01.720 --> 00:03:05.800
+sonuçları gözden geçirmeniz her zaman önerilir.
+Windows sürümünün en büyük
+
+00:03:05.800 --> 00:03:11.240
+avantajlarından biri Tam Senaryoyu Görüntüle özelliğidir.
+Mobil sürümlerin aksine, Windows
+
+00:03:11.240 --> 00:03:15.480
+size çıkarılan diyaloğun yanında tam orijinal
+senaryoyu görüntüleme imkanı sunar.
+
+00:03:15.480 --> 00:03:19.360
+Bu, gözden geçirmeyi, düzeltmeyi ve
+düzenlemeyi inanılmaz derecede hızlandırır.
+
+00:03:20.760 --> 00:03:25.120
+Bir satırın başka bir karaktere ait olduğunu
+veya bir diyaloğun doğru çıkarılmadığını
+
+00:03:25.120 --> 00:03:29.680
+fark ederseniz, doğrudan düzenleyebilirsiniz.
+Her şey anında güncellenir.
+
+00:03:30.920 --> 00:03:34.720
+RehearsAI ayrıca kadronuz üzerinde
+tam kontrol sahibi olmanızı sağlar.
+
+00:03:34.720 --> 00:03:36.320
+Karakterleri yeniden adlandırabilir,
+
+00:03:36.320 --> 00:03:40.280
+birden fazla karakteri birleştirebilir,
+tamamen yeni karakterler ekleyebilir,
+
+00:03:40.280 --> 00:03:45.680
+veya artık ihtiyaç duyulmayan karakterleri kaldırabilirsiniz.
+Senaryonun herhangi bir yerine yeni diyalog ekleyebilir
+
+00:03:45.680 --> 00:03:49.440
+veya bir karakterin satırlarının sonuna
+ekleme yapabilirsiniz.
+
+00:03:49.440 --> 00:03:54.360
+Bu, Windows sürümünü provalar başlamadan önce
+ideal bir düzenleme ortamı haline getirir.
+
+00:03:56.160 --> 00:04:00.600
+Büyük senaryolarda gezinmek zorlaşabilir.
+Bu yüzden RehearsAI güçlü bir
+
+00:04:00.600 --> 00:04:03.040
+arama işlevi içerir.
+Sadece bir kelime,
+
+00:04:03.040 --> 00:04:08.840
+ifade veya karakter adı yazın ve senaryodaki
+her eşleşen konuma anında geçin.
+
+00:04:10.440 --> 00:04:13.440
+Bir diğer son derece kullanışlı özellik
+ise Sahne Yönetimi'dir.
+
+00:04:13.440 --> 00:04:17.080
+Yüzlerce diyalog satırında gezinmek yerine,
+senaryoyu ayrı
+
+00:04:17.080 --> 00:04:21.480
+sahnelere bölebilirsiniz. Her sahne
+gerektiğinde yeniden adlandırılabilir, sıralanabilir,
+
+00:04:21.480 --> 00:04:26.720
+güncellenebilir veya silinebilir.
+Bu, provaları çok daha düzenli hale getirir
+
+00:04:26.720 --> 00:04:30.000
+ve oyuncuların yalnızca ihtiyaç duydukları
+sahneleri çalışmasına olanak tanır.
+
+00:04:30.000 --> 00:04:33.520
+Projeniz tamamen düzenlendikten sonra,
+paylaşma zamanı gelmiştir.
+
+00:04:34.480 --> 00:04:38.560
+Projeyi Paylaş'a tıklayın.
+RehearsAI, projenizi güvenli bir şekilde
+
+00:04:38.560 --> 00:04:43.480
+sunucuya yükler ve benzersiz bir proje kodu oluşturur.
+Bu kodu oyuncularınıza göndermeniz yeterlidir.
+
+00:04:43.480 --> 00:04:47.720
+Android veya iPhone uygulamasından, kodu
+girip kendilerine atanan karakterleri seçerek
+
+00:04:47.720 --> 00:04:54.760
+provaya katılabilirler. Proje sahibi olarak
+tam kontrol sizde kalır.
+
+00:04:54.760 --> 00:05:01.560
+Projeyi istediğiniz zaman kilitleyebilir veya kilidini açabilir,
+katılımcıları kaldırabilir veya gerekirse kullanıcıları engelleyebilirsiniz.
+
+00:05:01.560 --> 00:05:06.920
+Windows uygulamasında yaptığınız her düzenleme
+paylaşılan projeyle de senkronize edilebilir.
+
+00:05:08.360 --> 00:05:13.360
+Son olarak, RehearsAI çalışmanızı dışa aktarmanıza olanak tanır.
+Tam senaryoyu dışa aktarabilir,
+
+00:05:13.360 --> 00:05:16.520
+veya yalnızca seçili karakterleri içeren
+senaryolar oluşturabilirsiniz.
+
+00:05:16.520 --> 00:05:21.720
+Bu, prova kopyaları basmak veya her oyuncuyla
+kişiselleştirilmiş diyaloglar paylaşmak için idealdir.
+
+00:05:21.720 --> 00:05:26.440
+RehearsAI Windows sürümü, eksiksiz bir proje yönetimi
+çalışma alanı olmanız için tasarlanmıştır.
+
+00:05:26.440 --> 00:05:30.840
+Yapay zeka destekli diyalog çıkarımından
+gelişmiş düzenlemeye,
+
+00:05:30.840 --> 00:05:33.120
+sahne organizasyonundan
+proje paylaşımına
+
+00:05:33.120 --> 00:05:36.240
+ve senaryo dışa aktarımına kadar her şey
+zamandan tasarruf etmenizi
+
+00:05:36.240 --> 00:05:39.200
+ve provaları daha verimli hale getirmenizi sağlar.
+İzlediğiniz için teşekkür ederiz.
+
+00:05:39.200 --> 00:05:43.840
+Bir sonraki videoda Android ve iPhone sürümlerini
+inceleyecek ve oyuncuların rollerini
+
+00:05:43.840 --> 00:05:47.520
+her yerde, her zaman nasıl prova edebileceğini göreceğiz.
+Bir sonraki eğitimde görüşmek üzere.
